@@ -8,7 +8,6 @@ public class DrawingModel implements Serializable{
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 7861597306348577488L;
 	private ArrayList<Shape> shapes=new ArrayList<Shape>();
 	public ArrayList<Shape> getAll() {
 		return shapes;

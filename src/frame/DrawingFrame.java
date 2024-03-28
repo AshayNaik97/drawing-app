@@ -47,7 +47,7 @@ public class DrawingFrame extends JFrame {
 	}
 
 	public DrawingFrame() {
-		setTitle("Nemanja Tesic IT23-2016");
+		setTitle("Drawing App");
 		view.setBackground(Color.WHITE);
 		view.addMouseListener(new MouseAdapter() {
 			@Override
@@ -212,8 +212,8 @@ public class DrawingFrame extends JFrame {
 
 		getContentPane().add(selViews, BorderLayout.NORTH);
 		
-		getContentPane().add(posView, BorderLayout.EAST);
-		getContentPane().add(logView, BorderLayout.SOUTH);
+		// getContentPane().add(posView, BorderLayout.EAST);
+		// getContentPane().add(logView, BorderLayout.SOUTH);
 	}
 
 	public ShapesView getSViews() {

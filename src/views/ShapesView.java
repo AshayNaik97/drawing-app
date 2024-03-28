@@ -63,12 +63,6 @@ public class ShapesView extends JPanel {
 		gbc_btnCircle.gridy = 4;
 		add(btnCircle, gbc_btnCircle);
 		
-		btnHexagon = new JButton("Hexagon");
-		GridBagConstraints gbc_btnHexagon = new GridBagConstraints();
-		gbc_btnHexagon.fill = GridBagConstraints.HORIZONTAL;
-		gbc_btnHexagon.gridx = 0;
-		gbc_btnHexagon.gridy = 5;
-		add(btnHexagon, gbc_btnHexagon);
 
 	}
 	public JButton getBtnPoint() {

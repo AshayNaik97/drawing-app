@@ -18,7 +18,6 @@ public class LogParser extends JDialog {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -5661359792776909287L;
 	private JTextPane tpLogPreview;
 	private JButton btnNext,btnCancel;
 	private boolean conf=false;
@@ -78,7 +77,7 @@ public class LogParser extends JDialog {
 		gbc_btnCancel.gridy = 1;
 		getContentPane().add(btnCancel, gbc_btnCancel);
 		{
-			btnNext = new JButton("Aplay");
+			btnNext = new JButton("Apply");
 			btnNext.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
 					conf=true;
