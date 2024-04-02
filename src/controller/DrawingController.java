@@ -39,11 +39,13 @@ public class DrawingController implements Serializable {
 	private Point stop;
 	
 	public DrawingController(DrawingModel model, DrawingFrame frame) {
+		System.out.println("controller/DrawingController/directionAssistant");
 		this.model = model;
 		this.frame = frame;
 	}
 
 	public void mouseClicked(MouseEvent arg0) {
+		System.out.println("controller/DrawingController/mouseClicked");
 		if(!frame.getToolsController().isEnterSelecting()) {
 			if(frame.getToolsController().getSelection()==1) {
 				Point p = new Point(arg0.getX(), arg0.getY(), frame.getToolsController().getOuter());
@@ -70,6 +72,7 @@ public class DrawingController implements Serializable {
 	}
 	
 	public void doCommandUpdateSelected(Shape s,boolean state) {
+		System.out.println("controller/DrawingController/doCommandUpdateSelected");
 		Command cmd=null;
 		if(s instanceof Point) {
 			Point p=(Point)s;
@@ -127,6 +130,7 @@ public class DrawingController implements Serializable {
 	}
 
 	public void moveLines(MouseEvent arg0) {
+		System.out.println("controller/DrawingController/moveLines");
 		if(draw) {
 			if(stop!=null)
 			model.remove(stop);
@@ -141,6 +145,7 @@ public class DrawingController implements Serializable {
 	}
 	
 	public void mousePressed(MouseEvent arg0) {
+		System.out.println("controller/DrawingController/mousePressed");
 		if(frame.getToolsController().getSelection()>1&&!frame.getToolsController().isEnterSelecting()) {
 			if(start==null) {
 				start=new Point(arg0.getX(),arg0.getY(),frame.getToolsController().getOuter());
@@ -155,6 +160,7 @@ public class DrawingController implements Serializable {
 	
 	
 	public void mouseReleased(MouseEvent arg0) {
+		System.out.println("controller/DrawingController/mouseReleased");
 		draw=false;
 		model.remove(start);
 		model.remove(startSquare);
@@ -234,6 +240,7 @@ public class DrawingController implements Serializable {
 	}
 
 	public void directionAssitant(Point start, Point end) {
+		System.out.println("controller/DrawingController/directionAssistant");
 		if(end.getX()<start.getX()&&end.getY()>start.getY()) {
 			int temp;
 			temp=start.getX();start.setX(end.getX());end.setX(temp);
