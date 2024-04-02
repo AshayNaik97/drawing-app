@@ -207,7 +207,7 @@ public class DrawingFrame extends JFrame {
 		getContentPane().add(view);
 		
 
-		getContentPane().add(sViews, BorderLayout.WEST);
+		getContentPane().add(sViews, BorderLayout.EAST);
 		
 
 		getContentPane().add(selViews, BorderLayout.NORTH);
