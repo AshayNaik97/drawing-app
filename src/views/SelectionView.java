@@ -10,7 +10,6 @@ import javax.swing.JLabel;
 
 public class SelectionView extends JPanel {
 
-	private static final long serialVersionUID = 1514183278122814841L;
 	private JButton btnUndo,btnRedo,btnInner,btnOutter;
 	private JButton btnSelect;
 	private JButton btnModify;
@@ -117,6 +116,12 @@ public class SelectionView extends JPanel {
 		gbc_btnDelete.gridy = 0;
 		add(btnDelete, gbc_btnDelete);
 
+		// btnDelete = new JButton("Delete");
+		// btnDelete.setEnabled(false);
+		// GridBagConstraints gbc_btnDelete = new GridBagConstraints();
+		// gbc_btnDelete.gridx = 12;
+		// gbc_btnDelete.gridy = 0;
+		// add(btnDelete, gbc_btnDelete);
 	}
 	public JButton getBtnUndo() {
 		return btnUndo;
