@@ -10,6 +10,7 @@ public class LogHandler extends Handler {
 		public LogHandler(DrawingFrame frame)
 		{
 			this.frame=frame;
+			System.out.println("logging/loghandler");
 		}
 		  @Override
 		  public void publish(LogRecord record) {

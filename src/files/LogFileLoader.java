@@ -31,14 +31,16 @@ public class LogFileLoader implements AssetLoader {
              while ((line = br.readLine()) != null) {
             	 text=text+line+'\n';
             	 lp.getTpLogPreview().setText(text);
-            	 lp.setConf(false);
-            	 lp.setVisible(true);
+				//   lp.setConf(false);
+				 lp.setConf(true); //updated
+            	//  lp.setVisible(true);
             	 if(lp.isConf()) {
             		 CommandTransfer ct=new CommandTransfer(model,frame);
             		 Command c=ct.toCommand(line);
             		 frame.getView().repaint();
             		 if(c==null) {lp.dispose();break;}
-            	 }else {lp.dispose();break;}
+            	 }
+				//  else {lp.dispose();break;}
             	 for (Shape s : model.getAll()) {
 					if(s.isSelected()) {
 						if(!frame.getToolsController().isEnterSelecting())

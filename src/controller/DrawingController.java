@@ -50,6 +50,7 @@ public class DrawingController implements Serializable {
 	private Point stop;
 
 	public DrawingController(DrawingModel model, DrawingFrame frame) {
+		System.out.println("controller/DrawingController/directionAssistant");
 		this.model = model;
 		this.frame = frame;
 	}
@@ -57,6 +58,7 @@ public class DrawingController implements Serializable {
 	public void mouseClicked(MouseEvent arg0) {
 		if (!frame.getToolsController().isEnterSelecting()) {
 			if (frame.getToolsController().getSelection() == 1) {
+
 				Point p = new Point(arg0.getX(), arg0.getY(), frame.getToolsController().getOuter());
 				p.addObserver(new ShapeObserver(model, frame));
 				AddPoint cmdAddPoint = new AddPoint(model, p);
@@ -86,6 +88,7 @@ public class DrawingController implements Serializable {
 		if (s instanceof Point) {
 			Point p = (Point) s;
 			Point c = p.clone();
+
 			c.setSelected(state);
 			cmd = new UpdatePoint(p, c);
 			frame.getToolsController().LogCommand(cmd, true, p, c);
@@ -227,16 +230,20 @@ public class DrawingController implements Serializable {
 					frame.getView().repaint();
 				}
 			}
+
+
 		}
 	}
 
 	public void mousePressed(MouseEvent arg0) {
+
 		System.out.println("mouse pressed");
 		isDraged = true;
 		if (frame.getToolsController().getSelection() > 1 && !frame.getToolsController().isEnterSelecting()) {
 			if (start == null) {
 				start = new Point(arg0.getX(), arg0.getY(), frame.getToolsController().getOuter());
 				startSquare = new Square(new Point(start.getX() - 3, start.getY() - 3), 6);
+
 				model.add(startSquare);
 				model.add(start);
 				draw = true;
@@ -250,6 +257,7 @@ public class DrawingController implements Serializable {
 		System.out.println("mouse released ");
 		isDraged = false;
 		draw = false;
+
 		model.remove(start);
 		model.remove(startSquare);
 		model.remove(stop);
@@ -320,7 +328,9 @@ public class DrawingController implements Serializable {
 	}
 
 	public void directionAssitant(Point start, Point end) {
+
 		if (end.getX() < start.getX() && end.getY() > start.getY()) {
+
 			int temp;
 			temp = start.getX();
 			start.setX(end.getX());
