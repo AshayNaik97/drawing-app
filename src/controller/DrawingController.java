@@ -271,8 +271,10 @@ public class DrawingController implements Serializable {
 		if (start != null) {
 			if (frame.getToolsController().getSelection() == 2) {
 				Line l = new Line(start, new Point(arg0.getX(), arg0.getY(), outer), outer);
-				l.addObserver(observer);
+				// l.addObserver(observer);
 				if (l.length() > 3) {
+					RemoveLine cmd1 = new RemoveLine(model, prevLine);
+					cmd1.execute(); 
 					AddLine cmd = new AddLine(model, l);
 					cmd.execute();
 					frame.getToolsController().LogCommand(cmd, true, l, null);
@@ -281,13 +283,12 @@ public class DrawingController implements Serializable {
 			}
 			if (frame.getToolsController().getSelection() == 3) {
 				Point end = new Point(arg0.getX(), arg0.getY(), Color.RED);
-				// directionAssitant(start, end);
-				// int distance = (int) (start.distance(new Point(end.getX(), end.getY(),
-				// outer)) / Math.sqrt(2));
 				int distance = Math.min(Math.abs(start.getX() - end.getX()), Math.abs(start.getY() - end.getY()));
 				Square s = new Square(updatedStart, distance, outer, inner);
-				s.addObserver(observer);
+				// s.addObserver(observer);
 				if (s.surfaceArea() > 3) {
+					RemoveSquare cmd1 = new RemoveSquare(model, prevSquare);
+					cmd1.execute();
 					AddSquare cmd = new AddSquare(model, s);
 					cmd.execute();
 					frame.getToolsController().LogCommand(cmd, true, s, null);
@@ -297,11 +298,13 @@ public class DrawingController implements Serializable {
 
 			if (frame.getToolsController().getSelection() == 4) {
 				Point end = new Point(arg0.getX(), arg0.getY(), Color.RED);
-				directionAssitant(start, end);
+				// directionAssitant(start, end);
 				Rectangle r = new Rectangle(start, Math.abs(start.getY() - end.getY()),
 						Math.abs(start.getX() - end.getX()), outer, inner);
-				r.addObserver(observer);
+				// r.addObserver(observer);
 				if (r.surfaceArea() > 3) {
+					RemoveRectangle cmd1 = new RemoveRectangle(model, prevRectangle);
+					cmd1.execute();
 					AddRectangle cmd = new AddRectangle(model, r);
 					frame.getToolsController().LogCommand(cmd, true, r, null);
 					cmd.execute();
@@ -312,8 +315,10 @@ public class DrawingController implements Serializable {
 			if (frame.getToolsController().getSelection() == 5) {
 				Circle c = new Circle(start, (int) start.distance(new Point(arg0.getX(), arg0.getY(), outer)), outer,
 						inner);
-				c.addObserver(observer);
+				// c.addObserver(observer);
 				if (c.getRadius() > 3) {
+					RemoveCircle cmd1 = new RemoveCircle(model, prevCircle);
+					cmd1.execute();
 					AddCircle cmd = new AddCircle(model, c);
 					frame.getToolsController().LogCommand(cmd, true, c, null);
 					cmd.execute();
@@ -327,31 +332,5 @@ public class DrawingController implements Serializable {
 		}
 	}
 
-	public void directionAssitant(Point start, Point end) {
-
-		if (end.getX() < start.getX() && end.getY() > start.getY()) {
-
-			int temp;
-			temp = start.getX();
-			start.setX(end.getX());
-			end.setX(temp);
-		}
-
-		if (end.getX() > start.getX() && end.getY() < start.getY()) {
-			int temp;
-			temp = start.getY();
-			start.setY(end.getY());
-			end.setY(temp);
-		}
-		if (end.getX() < start.getX() && end.getY() < start.getY()) {
-			int temp;
-			temp = start.getX();
-			start.setX(end.getX());
-			end.setX(temp);
-			temp = start.getY();
-			start.setY(end.getY());
-			end.setY(temp);
-		}
-	}
 
 }
