@@ -22,7 +22,6 @@ import views.ShapesView;
 import java.awt.Color;
 
 public class DrawingFrame extends JFrame {
-	private static final long serialVersionUID = 7934396975388164057L;
 	private DrawingView view = new DrawingView();
 	private ShapesView sViews=new ShapesView();
 	private SelectionView selViews=new SelectionView();
@@ -31,7 +30,6 @@ public class DrawingFrame extends JFrame {
 	private MenuController menuController;
 	private LogView logView=new LogView();
 	private boolean actModify=false,actDelete=false,actPosition=false;
-	
 	private DrawingController controller;
 	
 
@@ -207,7 +205,7 @@ public class DrawingFrame extends JFrame {
 		getContentPane().add(view);
 		
 
-		getContentPane().add(sViews, BorderLayout.WEST);
+		getContentPane().add(sViews, BorderLayout.EAST);
 		
 
 		getContentPane().add(selViews, BorderLayout.NORTH);

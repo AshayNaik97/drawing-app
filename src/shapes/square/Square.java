@@ -13,7 +13,6 @@ public class Square extends SurfaceShape implements Movable{
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -470783193023037920L;
 	protected  Point upperLeft;
 	protected  int sideLength;
 	
@@ -87,7 +86,7 @@ public class Square extends SurfaceShape implements Movable{
 	public void draw(Graphics g) {
 		g.setColor(getColor());
 		g.drawRect(upperLeft.getX(), upperLeft.getY(), sideLength, sideLength);
-		fill(g);
+		// fill(g);
 		if (isSelected())
 			selected(g);
 	}
