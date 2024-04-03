@@ -11,7 +11,6 @@ public class Line extends Shape{
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -7166307640106360873L;
 	private Point pointStart;
 	private Point pointEnd;
 
@@ -70,7 +69,7 @@ public class Line extends Shape{
 		g.setColor(getColor());
 		g.drawLine(pointStart.getX(), pointStart.getY(), pointEnd.getX(), pointEnd.getY());
 		if (isSelected())
-			selected(g);
+			selected(g);  
 	}
 
 	@Override
