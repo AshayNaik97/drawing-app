@@ -12,7 +12,6 @@ import frame.DrawingFrame;
 
 public class SelectionView extends JPanel {
 
-	private static final long serialVersionUID = 1514183278122814841L;
 	private JButton btnUndo,btnRedo,btnInner,btnOutter;
 	private JButton btnSelect;
 	private JButton btnModify;

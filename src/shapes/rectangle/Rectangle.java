@@ -93,7 +93,7 @@ public class Rectangle extends Square{
 	public void draw(Graphics g) {
 		g.setColor(getColor());
 		g.drawRect(upperLeft.getX(), upperLeft.getY(), width, sideLength);
-		fill(g);
+		// fill(g);
 		if (isSelected())
 			selected(g);
 	}

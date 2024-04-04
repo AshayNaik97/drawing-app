@@ -13,7 +13,6 @@ public class Line extends Shape{
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -7166307640106360873L;
 	private Point pointStart;
 	private Point pointEnd;
 	private int strokeSize=0;
@@ -76,6 +75,7 @@ public class Line extends Shape{
 		g2.drawLine(pointStart.getX(), pointStart.getY(), pointEnd.getX(), pointEnd.getY());
 		if (isSelected())
 			selected(g2);
+
 	}
 
 	@Override

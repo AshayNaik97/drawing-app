@@ -16,7 +16,6 @@ public class Circle extends SurfaceShape implements Movable  {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -8182938123778221790L;
 
 	private Point center;
 	private int radius;
@@ -97,7 +96,7 @@ public class Circle extends SurfaceShape implements Movable  {
 		g.setColor(getColor());
 		// g2.setStroke(new BasicStroke(strokeSize));
 		g.drawOval(center.getX() - radius, center.getY() - radius, 2 * radius, radius * 2);
-		fill(g);
+		// fill(g);
 		if (isSelected())
 			selected(g);
 	}

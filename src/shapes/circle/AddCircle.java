@@ -6,7 +6,6 @@ import shapes.Command;
 
 public class AddCircle implements Command{
 
-	private static final long serialVersionUID = 4750085445857983406L;
 	private DrawingModel model;
 	private Circle circle;
 	public AddCircle(DrawingModel model, Circle circle) {
