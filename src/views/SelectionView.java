@@ -7,6 +7,7 @@ import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
+import javax.swing.JRadioButton;
 
 public class SelectionView extends JPanel {
 
@@ -17,6 +18,7 @@ public class SelectionView extends JPanel {
 	private JButton btnNew;
 	private JButton btnOpen;
 	private JButton btnSave;
+	private JRadioButton btnFill;
 	/**
 	 * Create the panel.
 	 */
@@ -52,7 +54,7 @@ public class SelectionView extends JPanel {
 		gbc_btnSave.gridy = 0;
 		add(btnSave, gbc_btnSave);
 		
-		btnUndo = new JButton(); //new ImageIcon(SelectionView.class.getResource("../../resources/images/pok4.png"))
+		btnUndo = new JButton("Undo"); //new ImageIcon(SelectionView.class.getResource("../../resources/images/pok4.png"))
 		btnUndo.setEnabled(false);
 		GridBagConstraints gbc_btnUndo = new GridBagConstraints();
 		gbc_btnUndo.fill = GridBagConstraints.BOTH;
@@ -61,7 +63,7 @@ public class SelectionView extends JPanel {
 		gbc_btnUndo.gridy = 0;
 		add(btnUndo, gbc_btnUndo);
 		
-		btnRedo = new JButton(); //new ImageIcon(SelectionView.class.getResource("../../resources/images/pok42.png"))
+		btnRedo = new JButton("Redo"); //new ImageIcon(SelectionView.class.getResource("../../resources/images/pok42.png"))
 		btnRedo.setEnabled(false);
 		GridBagConstraints gbc_btnRedo = new GridBagConstraints();
 		gbc_btnRedo.fill = GridBagConstraints.BOTH;
@@ -116,12 +118,16 @@ public class SelectionView extends JPanel {
 		gbc_btnDelete.gridy = 0;
 		add(btnDelete, gbc_btnDelete);
 
-		// btnDelete = new JButton("Delete");
-		// btnDelete.setEnabled(false);
-		// GridBagConstraints gbc_btnDelete = new GridBagConstraints();
-		// gbc_btnDelete.gridx = 12;
-		// gbc_btnDelete.gridy = 0;
-		// add(btnDelete, gbc_btnDelete);
+		btnFill = new JRadioButton("fill"); //new ImageIcon(SelectionView.class.getResource("../../resources/images/pok4.png"))
+		btnFill.setSelected(false);
+		add(btnFill);
+		
+	}
+	public void setBtnfill(JRadioButton btnFill) {
+		this.btnFill = btnFill;
+	}
+	public JRadioButton getBtnfill() {
+		return btnFill;
 	}
 	public JButton getBtnUndo() {
 		return btnUndo;

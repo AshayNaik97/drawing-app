@@ -15,7 +15,7 @@ public class Square extends SurfaceShape implements Movable{
 	 */
 	protected  Point upperLeft;
 	protected  int sideLength;
-	
+	protected boolean fill;
 	public Square() {
 		
 	}
@@ -29,8 +29,9 @@ public class Square extends SurfaceShape implements Movable{
 		setColor(outer);
 	}
 	
-	public Square(Point upperLeft, int sideLength, Color outer, Color inner) {
+	public Square(Point upperLeft, int sideLength,boolean fill, Color outer, Color inner) {
 		this(upperLeft, sideLength, outer);
+		setfill(fill);
 		setInnerColor(inner);
 	}
 	
@@ -61,8 +62,8 @@ public class Square extends SurfaceShape implements Movable{
 
 	@Override
 	public String toString() {
-		return String.format("Square(UpperX=%d,UpperY=%d,a=%d,outercolor=[%d-%d-%d],innercolor=[%d-%d-%d],selected=%b)",
-				upperLeft.getX(), upperLeft.getY(), sideLength, getColor().getRed(), getColor().getGreen(),
+		return String.format("Square(UpperX=%d,UpperY=%d,a=%d,f=%b,outercolor=[%d-%d-%d],innercolor=[%d-%d-%d],selected=%b)",
+				upperLeft.getX(), upperLeft.getY(), sideLength,fill, getColor().getRed(), getColor().getGreen(),
 				getColor().getBlue(), getInnerColor().getRed(), getInnerColor().getGreen(), getInnerColor().getBlue(),isSelected());
 	}
 
@@ -86,7 +87,9 @@ public class Square extends SurfaceShape implements Movable{
 	public void draw(Graphics g) {
 		g.setColor(getColor());
 		g.drawRect(upperLeft.getX(), upperLeft.getY(), sideLength, sideLength);
-		// fill(g);
+		if(fill){
+			fill(g);
+		}
 		if (isSelected())
 			selected(g);
 	}
@@ -132,9 +135,15 @@ public class Square extends SurfaceShape implements Movable{
 		this.sideLength = sideLength;
 	}
 	
+	public boolean getfill() {
+		return this.fill;
+	}
+	public void setfill(boolean fill) {
+		this.fill = fill;
+	}
 	public Square clone() {
 		Square s=new Square(upperLeft.clone(),
-				sideLength, this.getColor(), this.getInnerColor());
+				sideLength,fill, this.getColor(), this.getInnerColor());
 		s.setSelected(isSelected());
 		return s;
 	}

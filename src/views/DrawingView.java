@@ -12,7 +12,6 @@ public class DrawingView extends JPanel {
 	public DrawingView() {
 	}
 
-	private static final long serialVersionUID = 8957212343807043677L;
 	private DrawingModel model;
 	public void setModel(DrawingModel model) {
 		this.model=model;

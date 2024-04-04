@@ -27,6 +27,7 @@ public class DialogSquare extends JDialog {
 	private JTextField pointX;
 	private JTextField pointY;
 	private JTextField width;
+	private JTextField Fill;
 	private JButton btnInnercolor,btnOutercolor;
 	private Color inner,outer;
 	private Square square;
@@ -193,7 +194,8 @@ public class DialogSquare extends JDialog {
 		int crdX=Integer.parseInt(pointX.getText());
 		int crdY=Integer.parseInt(pointY.getText());
 		int wdth=Integer.parseInt(width.getText());
-		square=new Square(new Point(crdX,crdY),wdth,outer,inner);
+		boolean fill=Boolean.parseBoolean(Fill.getText());
+		square=new Square(new Point(crdX,crdY),wdth,fill,outer,inner);
 		square.setSelected(true);
 		confirm=true;
 		setVisible(false);

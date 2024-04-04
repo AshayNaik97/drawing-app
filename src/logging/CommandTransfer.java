@@ -144,6 +144,7 @@ public class CommandTransfer {
 		return col;
 	}
 	private Point toPoint(String tekst) {
+		System.out.println(tekst);
 		//x=%d,y=%d,color=[%d-%d-%d]x=%d,y=%d,color=[%d-%d-%d]
 		String[] flow=tekst.split(",");
 		int x=Integer.parseInt(flow[0].split("=")[1]);
@@ -158,6 +159,7 @@ public class CommandTransfer {
 	}
 	
 	private Line toLine(String tekst) {
+		System.out.println(tekst);
 		String[] flow=tekst.split(",");
 		int startX=Integer.parseInt(flow[0].split("=")[1]);
 		int startY=Integer.parseInt(flow[1].split("=")[1]);
@@ -171,43 +173,49 @@ public class CommandTransfer {
 	}
 	
 	private Square toSquare(String tekst) {
+		System.out.println(tekst);
 		String[] flow=tekst.split(",");
 		//Square(UpperX=%d,UpperY=%d,a=%d,outercolor=[%d-%d-%d],innercolor=[%d-%d-%d])
 		int upperX=Integer.parseInt(flow[0].split("=")[1]);
 		int upperY=Integer.parseInt(flow[1].split("=")[1]);
 		int width=Integer.parseInt(flow[2].split("=")[1]);
-		Color outerColor=getColor(flow[3].split("=")[1]);
-		Color innerColor=getColor(flow[4].split("=")[1]);
-		boolean sel=Boolean.parseBoolean(flow[5].split("=")[1]);
-		Square s=new Square(new Point(upperX,upperY), width, outerColor, innerColor);
+		boolean fill = Boolean.parseBoolean(flow[3].split("=")[1]);
+		Color outerColor=getColor(flow[4].split("=")[1]);
+		Color innerColor=getColor(flow[5].split("=")[1]);
+		boolean sel=Boolean.parseBoolean(flow[6].split("=")[1]);
+		Square s=new Square(new Point(upperX,upperY), width,fill, outerColor, innerColor);
 		s.setSelected(sel);
 		return s;
 	}
 	
 	private Rectangle toRectangle(String tekst) {
+		System.out.println(tekst);
 		String[] flow=tekst.split(",");
 		int upperX=Integer.parseInt(flow[0].split("=")[1]);
 		int upperY=Integer.parseInt(flow[1].split("=")[1]);
 		int height=Integer.parseInt(flow[2].split("=")[1]);
 		int width=Integer.parseInt(flow[3].split("=")[1]);
-		Color outerColor=getColor(flow[4].split("=")[1]);
-		Color innerColor=getColor(flow[5].split("=")[1]);
-		boolean sel=Boolean.parseBoolean(flow[6].split("=")[1]);
-		Rectangle r=new Rectangle(new Point(upperX,upperY), height, width, outerColor, innerColor);
+		boolean fill = Boolean.parseBoolean(flow[4].split("=")[1]);
+		Color outerColor=getColor(flow[5].split("=")[1]);
+		Color innerColor=getColor(flow[6].split("=")[1]);
+		boolean sel=Boolean.parseBoolean(flow[7].split("=")[1]);
+		Rectangle r=new Rectangle(new Point(upperX,upperY), height, width,fill, outerColor, innerColor);
 		r.setSelected(sel);
 		return r;
 	}
 	
 	private Circle toCircle(String tekst) {
-		//Circle(X=%d,Y=%d,r=%d,outercolor=[%d-%d-%d],innercolor=[%d-%d-%d])
+		//Circle(X=%d,Y=%d,r=%d,f=%d,outercolor=[%d-%d-%d],innercolor=[%d-%d-%d])
+		System.out.println(tekst);
 		String[] flow=tekst.split(",");
 		int crX=Integer.parseInt(flow[0].split("=")[1]);
 		int crY=Integer.parseInt(flow[1].split("=")[1]);
 		int r=Integer.parseInt(flow[2].split("=")[1]);
-		Color outerColor=getColor(flow[3].split("=")[1]);
-		Color innerColor=getColor(flow[4].split("=")[1]);
-		boolean sel=Boolean.parseBoolean(flow[5].split("=")[1]);
-		Circle c=new Circle(new Point(crX,crY), r, outerColor, innerColor);
+		boolean fill = Boolean.parseBoolean(flow[3].split("=")[1]);
+		Color outerColor=getColor(flow[4].split("=")[1]);
+		Color innerColor=getColor(flow[5].split("=")[1]);
+		boolean sel=Boolean.parseBoolean(flow[6].split("=")[1]);
+		Circle c=new Circle(new Point(crX,crY), r, fill,outerColor, innerColor);
 		c.setSelected(sel);
 		return c;
 	}

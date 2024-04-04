@@ -33,6 +33,7 @@ public class DialogRectangle extends JDialog {
 	private JTextField startPointY;
 	private JTextField width;
 	private JTextField height;
+	private JTextField Fill;
 	private Color inner,outer;
 	private Rectangle rectangle;
 	private JButton btnOuterColor,btnInnercolor;
@@ -224,7 +225,8 @@ public class DialogRectangle extends JDialog {
 		int crdY=Integer.parseInt(startPointY.getText());
 		int wdth=Integer.parseInt(width.getText());
 		int heiht=Integer.parseInt(height.getText());
-		rectangle=new Rectangle(new Point(crdX,crdY), heiht, wdth, outer, inner);
+		boolean fill = Boolean.parseBoolean(Fill.getText());
+		rectangle=new Rectangle(new Point(crdX,crdY), heiht, wdth,fill, outer, inner);
 		rectangle.setSelected(true);
 		confirm=true;
 		setVisible(false);

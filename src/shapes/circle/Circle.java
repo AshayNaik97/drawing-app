@@ -8,7 +8,6 @@ import shapes.Shape;
 import shapes.SurfaceShape;
 import shapes.line.Line;
 import shapes.point.Point;
-
 public class Circle extends SurfaceShape implements Movable  {
 
 	/**
@@ -17,7 +16,7 @@ public class Circle extends SurfaceShape implements Movable  {
 
 	private Point center;
 	private int radius;
-
+	private boolean fill=false;
 	public Circle() {
 	}
 
@@ -31,9 +30,10 @@ public class Circle extends SurfaceShape implements Movable  {
 		setColor(color);
 	}
 
-	public Circle(Point center, int radius, Color outerColor, Color innerColor) {
+	public Circle(Point center, int radius, boolean fill ,Color outerColor, Color innerColor) {
 		this(center, radius, outerColor);
 		setInnerColor(innerColor);
+		setFill(fill);
 	}
 
 	public double surfaceArea() {
@@ -55,8 +55,8 @@ public class Circle extends SurfaceShape implements Movable  {
 
 	@Override
 	public String toString() {
-		return String.format("Circle(X=%d,Y=%d,r=%d,outercolor=[%d-%d-%d],innercolor=[%d-%d-%d],selected=%b)", center.getX(),
-				center.getY(), radius, getColor().getRed(), getColor().getGreen(), getColor().getBlue(),
+		return String.format("Circle(X=%d,Y=%d,r=%d,f=%b,outercolor=[%d-%d-%d],innercolor=[%d-%d-%d],selected=%b)", center.getX(),
+				center.getY(), radius, fill,getColor().getRed(), getColor().getGreen(), getColor().getBlue(),
 				getInnerColor().getRed(), getInnerColor().getGreen(), getInnerColor().getBlue(),isSelected());
 	}
 
@@ -91,7 +91,10 @@ public class Circle extends SurfaceShape implements Movable  {
 	public void draw(Graphics g) {
 		g.setColor(getColor());
 		g.drawOval(center.getX() - radius, center.getY() - radius, 2 * radius, radius * 2);
-		// fill(g);
+		// System.out.println(super.fill);
+		if(fill==true){
+			fill(g);
+		}
 		if (isSelected())
 			selected(g);
 	}
@@ -123,10 +126,18 @@ public class Circle extends SurfaceShape implements Movable  {
 	public void setRadius(int radius) {
 		this.radius = radius;
 	}
+
+	public boolean getFill(){
+		return this.fill;
+	}
+
+	public void setFill(boolean fill){
+		this.fill = fill;
+	}
 	
 	public Circle clone() {
 		Circle c=new Circle(center.clone(),
-				this.radius, this.getColor(), this.getInnerColor());
+				this.radius,this.fill, this.getColor(), this.getInnerColor());
 		c.setSelected(isSelected());
 		return c;
 	}  

@@ -9,7 +9,6 @@ import javax.swing.JColorChooser;
 import javax.swing.JOptionPane;
 
 import dialogs.DialogCircle;
-// import dialogs.DialogHexagon;
 import dialogs.DialogLine;
 import dialogs.DialogPoint;
 import dialogs.DialogRectangle;
@@ -25,9 +24,6 @@ import shapes.Shape;
 import shapes.circle.Circle;
 import shapes.circle.RemoveCircle;
 import shapes.circle.UpdateCircle;
-// import shapes.hexagon.HexagonAdapter;
-// import shapes.hexagon.RemoveHexagonAdapter;
-// import shapes.hexagon.UpdateHexagonAdapter;
 import shapes.line.Line;
 import shapes.line.RemoveLine;
 import shapes.line.UpdateLine;
@@ -85,10 +81,6 @@ public class ToolsController implements Serializable {
 		selection = 5;
 		changeButtonCollor();
 	}
-	// public void hexagonSelected(ActionEvent e) {
-	// selection=6;
-	// changeButtonCollor();
-	// }
 
 	public void changeButtonCollor() {
 		frame.getSViews().getBtnPoint().setBackground(null);
@@ -111,6 +103,7 @@ public class ToolsController implements Serializable {
 
 	// updateButtons();
 	public void updateButtons() {
+		System.out.println("update buttons");
 		if (frame.getMenuController().getUndoStack().size() == 0)
 			frame.getSelViews().getBtnUndo().setEnabled(false);
 		else
@@ -135,6 +128,11 @@ public class ToolsController implements Serializable {
 			updateButtons();
 		} else
 			JOptionPane.showMessageDialog(null, "List is empty", "Undo command:", JOptionPane.INFORMATION_MESSAGE);
+	}
+
+	public boolean fillCommand(){
+		System.out.println("fill");
+		return frame.getSelViews().getBtnfill().isSelected();
 	}
 
 	private void ActivateSel() {
@@ -254,9 +252,6 @@ public class ToolsController implements Serializable {
 					} else if (s instanceof Circle) {
 						cmd = new RemoveCircle(model, (Circle) s);
 					}
-					// else if(s instanceof HexagonAdapter) {
-					// cmd=new RemoveHexagonAdapter(model, (HexagonAdapter) s);
-					// }
 					else
 						continue;
 					LogCommand(cmd, true, s, null);
@@ -348,17 +343,6 @@ public class ToolsController implements Serializable {
 				addUndo(cmd, transCmd(cmd, true, selected, view.getCircle()));
 			}
 		}
-		// else if(selected instanceof HexagonAdapter) {
-		// DialogHexagon view=new DialogHexagon();
-		// view.setHexagonAdapter((HexagonAdapter)selected);
-		// view.setVisible(true);
-		// if(view.isConfirm()) {
-		// cmd=new UpdateHexagonAdapter((HexagonAdapter)selected,
-		// view.getHexagonAdapter());
-		// LogCommand(cmd, true, selected, view.getHexagonAdapter());
-		// addUndo(cmd,transCmd(cmd, true, selected, view.getHexagonAdapter()));
-		// }
-		// }
 		cmd.execute();
 		updateButtons();
 		frame.getView().repaint();

@@ -147,7 +147,13 @@ public class DrawingFrame extends JFrame {
 				toolsController.modifyShape(e);
 			}
 		});
-		
+		selViews.getBtnfill().addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				toolsController.fillCommand();
+			}
+		});
 		posView.getBtnBringtoback().addActionListener(new ActionListener() {
 			
 			@Override
