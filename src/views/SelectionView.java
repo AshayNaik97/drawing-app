@@ -9,6 +9,8 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JRadioButton;
 
+import frame.DrawingFrame;
+
 public class SelectionView extends JPanel {
 
 	private JButton btnUndo,btnRedo,btnInner,btnOutter;
@@ -18,7 +20,11 @@ public class SelectionView extends JPanel {
 	private JButton btnNew;
 	private JButton btnOpen;
 	private JButton btnSave;
+
 	private JRadioButton btnFill;
+
+	private JButton btnPlus;
+	private JButton btnMinus;
 	/**
 	 * Create the panel.
 	 */
@@ -26,9 +32,9 @@ public class SelectionView extends JPanel {
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[]{0, 0, 0, 31, 45, 46, 67, 63, 61, 62, 59, 52, 46, 0};
 		gridBagLayout.rowHeights = new int[]{26, 0};
-		gridBagLayout.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		gridBagLayout.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		gridBagLayout.rowWeights = new double[]{0.0, Double.MIN_VALUE};
-		setLayout(gridBagLayout);
+		// setLayout(gridBagLayout);
 		
 		btnNew = new JButton("new");
 		// btnNew.setIcon(new ImageIcon(SelectionView.class.getResource("../../resources/images/new.png")));
@@ -96,26 +102,56 @@ public class SelectionView extends JPanel {
 		gbc_btnInner.gridy = 0;
 		add(btnInner, gbc_btnInner);
 		
+		JLabel strokeSize = new JLabel("StrokeSize");
+		GridBagConstraints gbc_strokeSize = new GridBagConstraints();
+		gbc_strokeSize.anchor = GridBagConstraints.EAST;
+		// gbc_strokeSize.insets = new Insets(0, 0, 0, 0);
+		gbc_strokeSize.gridx = 9;
+		gbc_strokeSize.gridy = 0;
+		// gbc_strokeSize.weightx = 1;
+		add(strokeSize, gbc_strokeSize);
+		
+		btnPlus = new JButton("+");
+		btnPlus.setEnabled(true);
+		GridBagConstraints gbc_btnPlus = new GridBagConstraints();
+		// gbc_btnPlus.insets = new Insets(0, 0, 0, 0);
+		gbc_btnPlus.gridx = 10;
+		gbc_btnPlus.gridy = 0;
+		// gbc_btnPlus.weightx = 1;
+		add(btnPlus, gbc_btnPlus);
+
+		btnMinus = new JButton("-");
+		btnMinus.setEnabled(true);
+		GridBagConstraints gbc_btnMinus = new GridBagConstraints();
+		// gbc_btnMinus.insets = new Insets(0, 0, 0, 5);
+		gbc_btnMinus.gridx = 11;
+		gbc_btnMinus.gridy = 0;
+		// gbc_btnMinus.weightx = 1;
+		add(btnMinus, gbc_btnMinus);
+		
 		btnSelect = new JButton("Select");
 		GridBagConstraints gbc_btnSelect = new GridBagConstraints();
 		gbc_btnSelect.insets = new Insets(0, 0, 0, 5);
-		gbc_btnSelect.gridx = 10;
+		gbc_btnSelect.gridx = 12;
 		gbc_btnSelect.gridy = 0;
+		// gbc_btnSelect.weightx = 1;
 		add(btnSelect, gbc_btnSelect);
 		
 		btnModify = new JButton("Modify");
 		btnModify.setEnabled(false);
 		GridBagConstraints gbc_btnModify = new GridBagConstraints();
 		gbc_btnModify.insets = new Insets(0, 0, 0, 5);
-		gbc_btnModify.gridx = 11;
+		gbc_btnModify.gridx = 13;
 		gbc_btnModify.gridy = 0;
+		// gbc_btnModify.weightx = 1;
 		add(btnModify, gbc_btnModify);
 		
 		btnDelete = new JButton("Delete");
 		btnDelete.setEnabled(false);
 		GridBagConstraints gbc_btnDelete = new GridBagConstraints();
-		gbc_btnDelete.gridx = 12;
+		gbc_btnDelete.gridx = 14;
 		gbc_btnDelete.gridy = 0;
+		// gbc_btnDelete.weightx = 1;
 		add(btnDelete, gbc_btnDelete);
 
 		btnFill = new JRadioButton("fill"); //new ImageIcon(SelectionView.class.getResource("../../resources/images/pok4.png"))
@@ -128,6 +164,7 @@ public class SelectionView extends JPanel {
 	}
 	public JRadioButton getBtnfill() {
 		return btnFill;
+
 	}
 	public JButton getBtnUndo() {
 		return btnUndo;
@@ -188,6 +225,18 @@ public class SelectionView extends JPanel {
 	}
 	public void setBtnSave(JButton btnSave) {
 		this.btnSave = btnSave;
+	}
+	public JButton getBtnPlus() {
+		return btnPlus;
+	}
+	public void setBtnPlus(JButton btnPlus) {
+		this.btnPlus = btnPlus;
+	}
+	public JButton getBtnMinus() {
+		return btnMinus;
+	}
+	public void setBtnMinus(JButton btnMinus) {
+		this.btnMinus = btnMinus;
 	}
 
 }

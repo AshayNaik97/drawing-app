@@ -4,6 +4,8 @@ import java.awt.Color;
 import java.awt.event.MouseEvent;
 import java.io.Serializable;
 
+import javax.lang.model.type.NullType;
+
 import frame.DrawingFrame;
 import model.DrawingModel;
 import shapes.Command;
@@ -40,6 +42,7 @@ public class DrawingController implements Serializable {
 	private Square startSquare;
 	private Line drag;
 	private boolean draw = false;
+
 	private boolean isDraged = false;
 	private Point prevStop;
 	private Line prevLine = null;
@@ -51,11 +54,13 @@ public class DrawingController implements Serializable {
 	
 
 	public DrawingController(DrawingModel model, DrawingFrame frame) {
+
 		this.model = model;
 		this.frame = frame;
 	}
 
 	public void mouseClicked(MouseEvent arg0) {
+
 		if (!frame.getToolsController().isEnterSelecting()) {
 			if (frame.getToolsController().getSelection() == 1) {
 
@@ -83,6 +88,7 @@ public class DrawingController implements Serializable {
 	}
 
 	public void doCommandUpdateSelected(Shape s, boolean state) {
+
 		Command cmd = null;
 		if (s instanceof Point) {
 			Point p = (Point) s;
@@ -125,10 +131,12 @@ public class DrawingController implements Serializable {
 			frame.getToolsController().addUndo(cmd, frame.getToolsController().transCmd(cmd, true, p, c));
 		}
 
+
 		cmd.execute();
 	}
 
 	public void moveLines(MouseEvent arg0) {
+
 		stop = null;
 		drag = null;
 		// startSquare = null;
@@ -240,6 +248,7 @@ public class DrawingController implements Serializable {
 				start = new Point(arg0.getX(), arg0.getY(), frame.getToolsController().getOuter());
 				startSquare = new Square(new Point(start.getX() - 3, start.getY() - 3), 6);
 
+
 				model.add(startSquare);
 				model.add(start);
 				draw = true;
@@ -247,9 +256,21 @@ public class DrawingController implements Serializable {
 			}
 
 		}
+		// if(frame.getToolsController().getSelection()>6){
+		// if(start==null) {
+		// start=new
+		// Point(arg0.getX(),arg0.getY(),frame.getToolsController().getOuter());
+		// startSquare=new Square(new Point(start.getX()-3,start.getY()-3),6);
+		// model.add(startSquare);
+		// model.add(start);
+		// draw=true;
+		// frame.getView().repaint();
+		// }
+		// }
 	}
 
 	public void mouseReleased(MouseEvent arg0) {
+
 		System.out.println("mouse released ");
 		isDraged = false;
 		draw = false;
@@ -267,7 +288,10 @@ public class DrawingController implements Serializable {
 		if (start != null) {
 			if (frame.getToolsController().getSelection() == 2) {
 				Line l = new Line(start, new Point(arg0.getX(), arg0.getY(), outer), outer);
-				// l.addObserver(observer);
+
+				l.setStrokeSize(frame.getBrush().getStrokeSize());
+				l.addObserver(observer);
+			
 				if (l.length() > 3) {
 					RemoveLine cmd1 = new RemoveLine(model, prevLine);
 					cmd1.execute(); 
@@ -279,6 +303,7 @@ public class DrawingController implements Serializable {
 			}
 			if (frame.getToolsController().getSelection() == 3) {
 				Point end = new Point(arg0.getX(), arg0.getY(), Color.RED);
+
 				int distance = Math.min(Math.abs(start.getX() - end.getX()), Math.abs(start.getY() - end.getY()));
 				Square s = new Square(updatedStart, distance, frame.getToolsController().fillCommand(), outer, inner);
 				// s.addObserver(observer);
@@ -294,6 +319,7 @@ public class DrawingController implements Serializable {
 
 			if (frame.getToolsController().getSelection() == 4) {
 				Point end = new Point(arg0.getX(), arg0.getY(), Color.RED);
+
 				// directionAssitant(start, end);
 				Rectangle r = new Rectangle(updatedStart, Math.abs(start.getY() - end.getY()),
 						Math.abs(start.getX() - end.getX()),frame.getToolsController().fillCommand(), outer, inner);
@@ -311,7 +337,7 @@ public class DrawingController implements Serializable {
 			if (frame.getToolsController().getSelection() == 5) {
 				Circle c = new Circle(start, (int) start.distance(new Point(arg0.getX(), arg0.getY(), outer)),frame.getToolsController().fillCommand(), outer,
 						inner);
-				// c.addObserver(observer);
+
 				if (c.getRadius() > 3) {
 					RemoveCircle cmd1 = new RemoveCircle(model, prevCircle);
 					cmd1.execute();
@@ -321,15 +347,44 @@ public class DrawingController implements Serializable {
 					frame.getToolsController().addUndo(cmd, frame.getToolsController().transCmd(cmd, true, c, null));
 				}
 			}
+
 			prevCircle=null;
 			prevLine=null;
 			prevRectangle=null;
 			prevSquare=null;
+
 			start = null;
 			frame.getView().repaint();
 			frame.getToolsController().updateButtons();
 		}
 	}
 
+
+	public void drawBrush(MouseEvent arg0) {
+		System.out.println("controller/DrawingController/DrawBrush");
+		if (draw) {
+			stop = new Point(arg0.getX(), arg0.getY());
+			ShapeObserver observer = new ShapeObserver(model, frame);
+			// Color inner = frame.getToolsController().getInner();
+			Color outer = frame.getToolsController().getOuter();
+			if (start != null) {
+				if (frame.getToolsController().getSelection() > 6) {
+					Line l = new Line(start, new Point(arg0.getX(), arg0.getY(), outer), outer);
+					l.setStrokeSize(frame.getBrush().getStrokeSize());
+					l.addObserver(observer);
+					if (l.length() > 0) {
+						AddLine cmd = new AddLine(model, l);
+						cmd.execute();
+						frame.getToolsController().LogCommand(cmd, true, l, null);
+						frame.getToolsController().addUndo(cmd,
+								frame.getToolsController().transCmd(cmd, true, l, null));
+					}
+				}
+				start = stop;
+				frame.getView().repaint();
+				frame.getToolsController().updateButtons();
+			}
+		}
+	}
 
 }

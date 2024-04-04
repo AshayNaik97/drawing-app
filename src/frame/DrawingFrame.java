@@ -17,7 +17,7 @@ import views.LogView;
 import views.PositionView;
 import views.SelectionView;
 import views.ShapesView;
-
+import brush.Brush;
 
 import java.awt.Color;
 
@@ -30,6 +30,7 @@ public class DrawingFrame extends JFrame {
 	private MenuController menuController;
 	private LogView logView=new LogView();
 	private boolean actModify=false,actDelete=false,actPosition=false;
+	private Brush brush = new Brush();
 	private DrawingController controller;
 	
 
@@ -62,9 +63,13 @@ public class DrawingFrame extends JFrame {
 			}
 		});
 		view.addMouseMotionListener(new MouseMotionAdapter() {
+
 			@Override
 			public void mouseDragged(MouseEvent arg0) {
-				controller.moveLines(arg0);
+				if(toolsController.getSelection()>6)
+					controller.drawBrush(arg0);
+				else
+					controller.moveLines(arg0);
 			}
 		});
 		sViews.getBtnPoint().addActionListener(new ActionListener() {
@@ -95,6 +100,13 @@ public class DrawingFrame extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				toolsController.circleSelected(e);
+			}
+		});
+
+		sViews.getBtnBrush().addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				toolsController.brushSelected(e);
 			}
 		});
 		selViews.getBtnInner().addActionListener(new ActionListener() {
@@ -147,6 +159,7 @@ public class DrawingFrame extends JFrame {
 				toolsController.modifyShape(e);
 			}
 		});
+
 		selViews.getBtnfill().addActionListener(new ActionListener() {
 			
 			@Override
@@ -154,6 +167,32 @@ public class DrawingFrame extends JFrame {
 				toolsController.fillCommand();
 			}
 		});
+
+		
+		selViews.getBtnPlus().addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				brush.setStrokeSize(brush.getStrokeSize()+1);
+			}
+		});
+
+		selViews.getBtnPlus().addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				brush.setStrokeSize(Math.min(brush.getStrokeSize()+1, 20));
+			}
+		});
+
+		selViews.getBtnMinus().addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				brush.setStrokeSize(Math.max(brush.getStrokeSize()-1, 0));
+			}
+		});
+
 		posView.getBtnBringtoback().addActionListener(new ActionListener() {
 			
 			@Override
@@ -290,6 +329,14 @@ public class DrawingFrame extends JFrame {
 
 	public void setMenuController(MenuController menuController) {
 		this.menuController = menuController;
+	}
+
+	public Brush getBrush() {
+		return brush;
+	}
+
+	public void setBrush(Brush Brush) {
+		this.brush = Brush;
 	}
 
 }

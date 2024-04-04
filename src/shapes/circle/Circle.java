@@ -2,6 +2,8 @@ package shapes.circle;
 
 import java.awt.Color;
 import java.awt.Graphics;
+// import java.awt.Graphics2D;
+// import java.awt.BasicStroke;
 
 import shapes.Movable;
 import shapes.Shape;
@@ -17,6 +19,7 @@ public class Circle extends SurfaceShape implements Movable  {
 	private Point center;
 	private int radius;
 	private boolean fill=false;
+
 	public Circle() {
 	}
 
@@ -89,7 +92,9 @@ public class Circle extends SurfaceShape implements Movable  {
 
 	@Override
 	public void draw(Graphics g) {
+		// Graphics2D g2 = (Graphics2D) g;
 		g.setColor(getColor());
+		// g2.setStroke(new BasicStroke(strokeSize));
 		g.drawOval(center.getX() - radius, center.getY() - radius, 2 * radius, radius * 2);
 		// System.out.println(super.fill);
 		if(fill==true){
