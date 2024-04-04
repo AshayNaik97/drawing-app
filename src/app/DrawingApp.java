@@ -31,8 +31,9 @@ public class DrawingApp {
 		frame.setMenuController(mController);
 		frame.setToolsController(tController);
 		frame.setSize(1200, 700);
+		// frame.setSize(600, 300);
 		frame.setVisible(true);
-		frame.setResizable(false);
+		frame.setResizable(true);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 

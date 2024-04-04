@@ -2,6 +2,8 @@ package shapes.line;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.BasicStroke;
 
 import shapes.Shape;
 import shapes.point.Point;
@@ -14,6 +16,7 @@ public class Line extends Shape{
 	private static final long serialVersionUID = -7166307640106360873L;
 	private Point pointStart;
 	private Point pointEnd;
+	private int strokeSize=0;
 
 	public Line() {
 
@@ -67,10 +70,12 @@ public class Line extends Shape{
 
 	@Override
 	public void draw(Graphics g) {
-		g.setColor(getColor());
-		g.drawLine(pointStart.getX(), pointStart.getY(), pointEnd.getX(), pointEnd.getY());
+		Graphics2D g2 = (Graphics2D) g;
+		g2.setColor(getColor());
+		g2.setStroke(new BasicStroke(strokeSize));
+		g2.drawLine(pointStart.getX(), pointStart.getY(), pointEnd.getX(), pointEnd.getY());
 		if (isSelected())
-			selected(g);
+			selected(g2);
 	}
 
 	@Override
@@ -108,6 +113,14 @@ public class Line extends Shape{
 
 	public void setPointEnd(Point pointEnd) {
 		this.pointEnd = pointEnd;
+	}
+
+	public int getStrokeSize() {
+		return strokeSize;
+	}
+
+	public void setStrokeSize(int strokeSize) {
+		this.strokeSize = strokeSize;
 	}
 
 	public Line clone() {
