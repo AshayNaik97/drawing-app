@@ -87,7 +87,6 @@ public class ToolsController implements Serializable {
 		changeButtonCollor();
 	}
 
-
 	public void changeButtonCollor() {
 		frame.getSViews().getBtnPoint().setBackground(null);
 		frame.getSViews().getBtnLine().setBackground(null);
