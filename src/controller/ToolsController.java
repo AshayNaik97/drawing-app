@@ -87,8 +87,6 @@ public class ToolsController implements Serializable {
 		changeButtonCollor();
 	}
 
-		changeButtonCollor();
-	}
 
 	public void changeButtonCollor() {
 		frame.getSViews().getBtnPoint().setBackground(null);
@@ -124,6 +122,61 @@ public class ToolsController implements Serializable {
 			frame.getSelViews().getBtnRedo().setEnabled(false);
 		else
 			frame.getSelViews().getBtnRedo().setEnabled(true);
+		int count=0;
+		for(Shape s:model.getAll()) {
+			if(s.isSelected())count++;
+		}
+		if(count==0) {
+			if(frame.isActModify()) {
+				frame.getSelViews().getBtnModify().setEnabled(false);
+				frame.setActModify(false);
+			}
+			if(frame.isActDelete()) {
+				frame.getSelViews().getBtnDelete().setEnabled(false);
+				frame.setActDelete(false);
+			}
+			
+			if(frame.isActPosition()) {
+				frame.getPosView().getBtnBringtoback().setEnabled(false);
+				frame.getPosView().getBtnToBack().setEnabled(false);
+				frame.getPosView().getBtnToFront().setEnabled(false);
+				frame.getPosView().getBtnBringToFront().setEnabled(false);
+				frame.setActPosition(false);
+			}
+			
+		}else if(count==1) {
+			if(!frame.isActModify()) {
+				frame.getSelViews().getBtnModify().setEnabled(true);
+				frame.setActModify(true);
+			}
+			if(!frame.isActDelete()) {
+				frame.getSelViews().getBtnDelete().setEnabled(true);
+				frame.setActDelete(true);
+			}
+			if(!frame.isActPosition()) {
+				frame.getPosView().getBtnBringtoback().setEnabled(true);
+				frame.getPosView().getBtnToBack().setEnabled(true);
+				frame.getPosView().getBtnToFront().setEnabled(true);
+				frame.getPosView().getBtnBringToFront().setEnabled(true);
+				frame.setActPosition(true);
+			}
+		}else if(count>1) {
+			if(frame.isActModify()) {
+				frame.getSelViews().getBtnModify().setEnabled(false);
+				frame.setActModify(false);
+			}
+			if(!frame.isActDelete()) {
+				frame.getSelViews().getBtnDelete().setEnabled(true);
+				frame.setActDelete(true);
+			}
+			if(frame.isActPosition()) {
+				frame.getPosView().getBtnBringtoback().setEnabled(false);
+				frame.getPosView().getBtnToBack().setEnabled(false);
+				frame.getPosView().getBtnToFront().setEnabled(false);
+				frame.getPosView().getBtnBringToFront().setEnabled(false);
+				frame.setActPosition(false);
+			}
+		}
 	}
 
 	public void undoCommand() {

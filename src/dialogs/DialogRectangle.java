@@ -27,7 +27,6 @@ public class DialogRectangle extends JDialog {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 1158990492967747260L;
 	private final JPanel contentPanel = new JPanel();
 	private JTextField startPointX;
 	private JTextField startPointY;
@@ -57,7 +56,7 @@ public class DialogRectangle extends JDialog {
 	public DialogRectangle() {
 		setModal(true);
 		setTitle("Modify Rectangle");
-		setBounds(100, 100, 235, 238);
+		setBounds(100, 100, 235, 248);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
@@ -143,13 +142,34 @@ public class DialogRectangle extends JDialog {
 			contentPanel.add(height, gbc_textField_3);
 			height.setColumns(10);
 		}
+
+		{
+			JLabel lblFill = new JLabel("Fill:");
+			GridBagConstraints gbc_lblFill = new GridBagConstraints();
+			gbc_lblFill.anchor = GridBagConstraints.EAST;
+			gbc_lblFill.insets = new Insets(0, 0, 5, 5);
+			gbc_lblFill.gridx = 0;
+			gbc_lblFill.gridy = 4;
+			contentPanel.add(lblFill, gbc_lblFill);
+		}
+		{
+			Fill = new JTextField();
+			GridBagConstraints gbc_textField_3 = new GridBagConstraints();
+			gbc_textField_3.insets = new Insets(0, 0, 5, 0);
+			gbc_textField_3.fill = GridBagConstraints.HORIZONTAL;
+			gbc_textField_3.gridx = 1;
+			gbc_textField_3.gridy = 4;
+			contentPanel.add(Fill, gbc_textField_3);
+			Fill.setColumns(10);
+		}
+
 		{
 			JLabel lblInnerColor = new JLabel("Inner Color:");
 			GridBagConstraints gbc_lblInnerColor = new GridBagConstraints();
 			gbc_lblInnerColor.anchor = GridBagConstraints.EAST;
 			gbc_lblInnerColor.insets = new Insets(0, 0, 5, 5);
 			gbc_lblInnerColor.gridx = 0;
-			gbc_lblInnerColor.gridy = 4;
+			gbc_lblInnerColor.gridy = 5;
 			contentPanel.add(lblInnerColor, gbc_lblInnerColor);
 		}
 		{
@@ -165,7 +185,7 @@ public class DialogRectangle extends JDialog {
 			gbc_btnInnercolor.fill = GridBagConstraints.BOTH;
 			gbc_btnInnercolor.insets = new Insets(0, 0, 5, 0);
 			gbc_btnInnercolor.gridx = 1;
-			gbc_btnInnercolor.gridy = 4;
+			gbc_btnInnercolor.gridy = 5;
 			contentPanel.add(btnInnercolor, gbc_btnInnercolor);
 		}
 		{
@@ -174,7 +194,7 @@ public class DialogRectangle extends JDialog {
 			gbc_lblOuterColor.anchor = GridBagConstraints.EAST;
 			gbc_lblOuterColor.insets = new Insets(0, 0, 5, 5);
 			gbc_lblOuterColor.gridx = 0;
-			gbc_lblOuterColor.gridy = 5;
+			gbc_lblOuterColor.gridy = 6;
 			contentPanel.add(lblOuterColor, gbc_lblOuterColor);
 		}
 		{
@@ -189,7 +209,7 @@ public class DialogRectangle extends JDialog {
 			gbc_btnOuterColor.fill = GridBagConstraints.BOTH;
 			gbc_btnOuterColor.insets = new Insets(0, 0, 5, 0);
 			gbc_btnOuterColor.gridx = 1;
-			gbc_btnOuterColor.gridy = 5;
+			gbc_btnOuterColor.gridy = 6;
 			contentPanel.add(btnOuterColor, gbc_btnOuterColor);
 		}
 		{
@@ -202,7 +222,7 @@ public class DialogRectangle extends JDialog {
 			GridBagConstraints gbc_btnModify = new GridBagConstraints();
 			gbc_btnModify.insets = new Insets(0, 0, 0, 5);
 			gbc_btnModify.gridx = 0;
-			gbc_btnModify.gridy = 6;
+			gbc_btnModify.gridy = 7;
 			contentPanel.add(btnModify, gbc_btnModify);
 		}
 		{
@@ -214,7 +234,7 @@ public class DialogRectangle extends JDialog {
 			});
 			GridBagConstraints gbc_btnCancel = new GridBagConstraints();
 			gbc_btnCancel.gridx = 1;
-			gbc_btnCancel.gridy = 6;
+			gbc_btnCancel.gridy = 7;
 			contentPanel.add(btnCancel, gbc_btnCancel);
 		}
 	}

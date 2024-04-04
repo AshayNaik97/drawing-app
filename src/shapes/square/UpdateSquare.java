@@ -5,7 +5,6 @@ import shapes.Command;
 
 public class UpdateSquare implements Command{
 
-	private static final long serialVersionUID = 8703943595953072018L;
 	private Square oldState;
 	private Square newState;
 	private Square originalState;
@@ -22,6 +21,8 @@ public class UpdateSquare implements Command{
 		originalState.setColor(newState.getColor());
 		originalState.setInnerColor(newState.getInnerColor());
 		originalState.setSelected(newState.isSelected());
+		originalState.setfill(newState.getfill());
+
 	}
 
 	@Override
@@ -31,6 +32,7 @@ public class UpdateSquare implements Command{
 		originalState.setColor(oldState.getColor());
 		originalState.setInnerColor(oldState.getInnerColor());
 		originalState.setSelected(oldState.isSelected());
+		originalState.setfill(oldState.getfill());
 	}
 
 }

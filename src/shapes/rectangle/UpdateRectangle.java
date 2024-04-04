@@ -23,6 +23,7 @@ public class UpdateRectangle implements Command{
 		originalState.setColor(newState.getColor());
 		originalState.setInnerColor(newState.getInnerColor());
 		originalState.setSelected(newState.isSelected());
+		originalState.setFill(newState.getFill());
 	}
 
 	@Override
@@ -33,6 +34,7 @@ public class UpdateRectangle implements Command{
 		originalState.setColor(oldState.getColor());
 		originalState.setInnerColor(oldState.getInnerColor());
 		originalState.setSelected(oldState.isSelected());
+		originalState.setFill(oldState.getFill());
 	}
 
 }

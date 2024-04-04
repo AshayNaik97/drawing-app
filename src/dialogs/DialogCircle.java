@@ -56,7 +56,7 @@ public class DialogCircle extends JDialog {
 	public DialogCircle() {
 		setModal(true);
 		setTitle("Modify Circle");
-		setBounds(100, 100, 230, 228);
+		setBounds(100, 100, 230, 248);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
@@ -123,13 +123,35 @@ public class DialogCircle extends JDialog {
 			contentPanel.add(tfRadius, gbc_textField_2);
 			tfRadius.setColumns(10);
 		}
+
+		{
+			JLabel lblFill = new JLabel("Fill:");
+			GridBagConstraints gbc_lblFill = new GridBagConstraints();
+			gbc_lblFill.anchor = GridBagConstraints.EAST;
+			gbc_lblFill.insets = new Insets(0, 0, 5, 5);
+			gbc_lblFill.gridx = 0;
+			gbc_lblFill.gridy = 3;
+			contentPanel.add(lblFill, gbc_lblFill);
+		}
+		{
+			tfFill = new JTextField();
+			GridBagConstraints gbc_textField_2 = new GridBagConstraints();
+			gbc_textField_2.insets = new Insets(0, 0, 5, 0);
+			gbc_textField_2.fill = GridBagConstraints.HORIZONTAL;
+			gbc_textField_2.gridx = 1;
+			gbc_textField_2.gridy = 3;
+			contentPanel.add(tfFill, gbc_textField_2);
+			tfFill.setColumns(10);
+		}
+
+
 		{
 			JLabel lblInnerColor = new JLabel("Inner Color:");
 			GridBagConstraints gbc_lblInnerColor = new GridBagConstraints();
 			gbc_lblInnerColor.anchor = GridBagConstraints.EAST;
 			gbc_lblInnerColor.insets = new Insets(0, 0, 5, 5);
 			gbc_lblInnerColor.gridx = 0;
-			gbc_lblInnerColor.gridy = 3;
+			gbc_lblInnerColor.gridy = 4;
 			contentPanel.add(lblInnerColor, gbc_lblInnerColor);
 		}
 		{
@@ -144,7 +166,7 @@ public class DialogCircle extends JDialog {
 			gbc_btnInnercolor.fill = GridBagConstraints.BOTH;
 			gbc_btnInnercolor.insets = new Insets(0, 0, 5, 0);
 			gbc_btnInnercolor.gridx = 1;
-			gbc_btnInnercolor.gridy = 3;
+			gbc_btnInnercolor.gridy = 4;
 			contentPanel.add(btnInnercolor, gbc_btnInnercolor);
 		}
 		{
@@ -153,7 +175,7 @@ public class DialogCircle extends JDialog {
 			gbc_lblOuterColor.anchor = GridBagConstraints.EAST;
 			gbc_lblOuterColor.insets = new Insets(0, 0, 5, 5);
 			gbc_lblOuterColor.gridx = 0;
-			gbc_lblOuterColor.gridy = 4;
+			gbc_lblOuterColor.gridy = 5;
 			contentPanel.add(lblOuterColor, gbc_lblOuterColor);
 		}
 		{
@@ -168,7 +190,7 @@ public class DialogCircle extends JDialog {
 			gbc_btnOutercolor.fill = GridBagConstraints.BOTH;
 			gbc_btnOutercolor.insets = new Insets(0, 0, 5, 0);
 			gbc_btnOutercolor.gridx = 1;
-			gbc_btnOutercolor.gridy = 4;
+			gbc_btnOutercolor.gridy = 5;
 			contentPanel.add(btnOutercolor, gbc_btnOutercolor);
 		}
 		{
@@ -181,7 +203,7 @@ public class DialogCircle extends JDialog {
 			GridBagConstraints gbc_btnModify = new GridBagConstraints();
 			gbc_btnModify.insets = new Insets(0, 0, 0, 5);
 			gbc_btnModify.gridx = 0;
-			gbc_btnModify.gridy = 5;
+			gbc_btnModify.gridy = 6;
 			contentPanel.add(btnModify, gbc_btnModify);
 		}
 		{
@@ -193,7 +215,7 @@ public class DialogCircle extends JDialog {
 			});
 			GridBagConstraints gbc_btnCancel = new GridBagConstraints();
 			gbc_btnCancel.gridx = 1;
-			gbc_btnCancel.gridy = 5;
+			gbc_btnCancel.gridy = 6;
 			contentPanel.add(btnCancel, gbc_btnCancel);
 		}
 	}
