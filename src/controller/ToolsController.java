@@ -82,7 +82,15 @@ public class ToolsController implements Serializable {
 	}
 
 	public void circleSelected(ActionEvent e) {
-		selection = 5;
+
+		selection=5;
+		changeButtonCollor();
+	}
+	public void brushSelected(ActionEvent e) {
+		selection=7;
+		changeButtonCollor();
+	}
+
 		changeButtonCollor();
 	}
 	// public void hexagonSelected(ActionEvent e) {
@@ -96,7 +104,9 @@ public class ToolsController implements Serializable {
 		frame.getSViews().getBtnSquare().setBackground(null);
 		frame.getSViews().getBtnRectangle().setBackground(null);
 		frame.getSViews().getBtnCircle().setBackground(null);
-		if (selection == 1) {
+		frame.getSViews().getBtnBrush().setBackground(null);
+		if(selection==1) {
+
 			frame.getSViews().getBtnPoint().setBackground(btnColor);
 		} else if (selection == 2) {
 			frame.getSViews().getBtnLine().setBackground(btnColor);
@@ -106,6 +116,8 @@ public class ToolsController implements Serializable {
 			frame.getSViews().getBtnRectangle().setBackground(btnColor);
 		} else if (selection == 5) {
 			frame.getSViews().getBtnCircle().setBackground(btnColor);
+		}else if(selection==7){
+			frame.getSViews().getBtnBrush().setBackground(btnColor);
 		}
 	}
 

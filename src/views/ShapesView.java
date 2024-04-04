@@ -11,7 +11,7 @@ import java.awt.Insets;
 public class ShapesView extends JPanel {
 
 	private static final long serialVersionUID = -3443121631873538324L;
-	private JButton btnPoint,btnLine,btnSquare,btnRectangle,btnCircle,btnHexagon;
+	private JButton btnPoint,btnLine,btnSquare,btnRectangle,btnCircle,btnBrush,btnHexagon;
 	/**
 	 * Create the panel.
 	 */
@@ -63,7 +63,13 @@ public class ShapesView extends JPanel {
 		gbc_btnCircle.gridy = 4;
 		add(btnCircle, gbc_btnCircle);
 		
-
+		btnBrush = new JButton("Brush");
+		GridBagConstraints gbc_btnBrush = new GridBagConstraints();
+		gbc_btnBrush.fill = GridBagConstraints.HORIZONTAL;
+		gbc_btnBrush.insets = new Insets(0, 0, 5, 0);
+		gbc_btnBrush.gridx = 0;
+		gbc_btnBrush.gridy = 5;
+		add(btnBrush, gbc_btnBrush);
 	}
 	public JButton getBtnPoint() {
 		return btnPoint;
@@ -94,7 +100,12 @@ public class ShapesView extends JPanel {
 	}
 	public void setBtnCircle(JButton btnCircle) {
 		this.btnCircle = btnCircle;
+	}	
+	public JButton getBtnBrush() {
+		return btnBrush;
 	}
-	
+	public void setBtnBrush(JButton btnBrush) {
+		this.btnBrush = btnBrush;
+	}
 
 }

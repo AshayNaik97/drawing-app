@@ -9,6 +9,8 @@ public class DrawingModel implements Serializable{
 	 * 
 	 */
 	private ArrayList<Shape> shapes=new ArrayList<Shape>();
+	private ArrayList<Long> group =new ArrayList<Long>();
+	
 	public ArrayList<Shape> getAll() {
 		return shapes;
 	}
@@ -25,5 +27,20 @@ public class DrawingModel implements Serializable{
 		shapes.remove(s);
 	}
 
+	public ArrayList<Long> getAllGroup() {
+		return group;
+	}
+
+	public Long getGroup(int i) {
+		return group.get(i);
+	}
+
+	public void addGroup(Long s) {
+		group.add(s);
+	}
+	
+	public void removeGroup(Long s) {
+		group.remove(s);
+	}
 
 }
