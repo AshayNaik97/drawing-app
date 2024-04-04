@@ -11,7 +11,6 @@ public class LogView extends JPanel {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -5126944245660252865L;
 	/**
 	 * Create the panel.
 	 */

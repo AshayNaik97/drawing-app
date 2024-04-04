@@ -27,11 +27,11 @@ public class DialogCircle extends JDialog {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -1082472013388572390L;
 	private final JPanel contentPanel = new JPanel();
 	private JTextField tfPointX;
 	private JTextField tfPointY;
 	private JTextField tfRadius;
+	private JTextField tfFill;
 	private JButton btnInnercolor,btnOutercolor;
 	private Color inner,outer;
 	private Circle circle;
@@ -202,7 +202,8 @@ public class DialogCircle extends JDialog {
 			int crdX=Integer.parseInt(tfPointX.getText());
 			int crdY=Integer.parseInt(tfPointY.getText());
 			int radius=Integer.parseInt(tfRadius.getText());
-			circle=new Circle(new Point(crdX,crdY),radius,outer,inner);
+			boolean fill =Boolean.parseBoolean(tfFill.getText());
+			circle=new Circle(new Point(crdX,crdY),radius,fill,outer,inner);
 			circle.setSelected(true);
 			confirm=true;
 			setVisible(false);

@@ -12,9 +12,8 @@ public class Rectangle extends Square{
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 7675430663286346177L;
 	private int width;
-
+	private boolean fill;
 	public Rectangle(Point upperLeft, int height, int width) {
 		super(upperLeft, height);
 		this.width = width;
@@ -25,8 +24,9 @@ public class Rectangle extends Square{
 		setColor(outerColor);
 	}
 
-	public Rectangle(Point upperLeft, int height, int width, Color outerColor, Color innerColor) {
+	public Rectangle(Point upperLeft, int height, int width, boolean fill, Color outerColor, Color innerColor) {
 		this(upperLeft, height, width, outerColor);
+		setFill(fill);
 		setInnerColor(innerColor);
 	}
 
@@ -63,8 +63,8 @@ public class Rectangle extends Square{
 	@Override
 	public String toString() {
 		return String.format(
-				"Rectangle(UpperX=%d,UpperY=%d,height=%d,width=%d,outercolor=[%d-%d-%d],innercolor=[%d-%d-%d],selected=%b)",
-				upperLeft.getX(), upperLeft.getY(), sideLength, width, getColor().getRed(), getColor().getGreen(),
+				"Rectangle(UpperX=%d,UpperY=%d,height=%d,width=%d,f=%b,outercolor=[%d-%d-%d],innercolor=[%d-%d-%d],selected=%b)",
+				upperLeft.getX(), upperLeft.getY(), sideLength, width,fill, getColor().getRed(), getColor().getGreen(),
 				getColor().getBlue(), getInnerColor().getRed(), getInnerColor().getGreen(), getInnerColor().getBlue(),isSelected());
 	}
 
@@ -93,7 +93,9 @@ public class Rectangle extends Square{
 	public void draw(Graphics g) {
 		g.setColor(getColor());
 		g.drawRect(upperLeft.getX(), upperLeft.getY(), width, sideLength);
-		// fill(g);
+		if(fill==true){
+			fill(g);
+		}
 		if (isSelected())
 			selected(g);
 	}
@@ -105,10 +107,18 @@ public class Rectangle extends Square{
 	public void setWidth(int width) {
 		this.width = width;
 	}
+
+	public boolean getFill(){
+		return this.fill;
+	}
+
+	public void setFill(boolean fill){
+		this.fill = fill;
+	}
 	
 	public Rectangle clone() {
 		Rectangle r=new Rectangle(upperLeft.clone(), 
-				this.getSideLength(), this.width, this.getColor(), this.getInnerColor());
+				this.getSideLength(), this.width,this.fill, this.getColor(), this.getInnerColor());
 		r.setSelected(this.isSelected());
 		return r;
 	}

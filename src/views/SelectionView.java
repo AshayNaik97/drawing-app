@@ -7,6 +7,7 @@ import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
+import javax.swing.JRadioButton;
 
 import frame.DrawingFrame;
 
@@ -19,7 +20,9 @@ public class SelectionView extends JPanel {
 	private JButton btnNew;
 	private JButton btnOpen;
 	private JButton btnSave;
-	// private JButton btnStrokeSize;
+
+	private JRadioButton btnFill;
+
 	private JButton btnPlus;
 	private JButton btnMinus;
 	/**
@@ -151,6 +154,16 @@ public class SelectionView extends JPanel {
 		// gbc_btnDelete.weightx = 1;
 		add(btnDelete, gbc_btnDelete);
 
+		btnFill = new JRadioButton("fill"); //new ImageIcon(SelectionView.class.getResource("../../resources/images/pok4.png"))
+		btnFill.setSelected(false);
+		add(btnFill);
+		
+	}
+	public void setBtnfill(JRadioButton btnFill) {
+		this.btnFill = btnFill;
+	}
+	public JRadioButton getBtnfill() {
+		return btnFill;
 
 	}
 	public JButton getBtnUndo() {

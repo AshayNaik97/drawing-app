@@ -4,15 +4,17 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.io.Serializable;
 import java.util.Observable;
+import views.SelectionView;
 
 public abstract class Shape extends Observable implements Comparable<Shape>, Serializable,Cloneable {
 
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -2219318365797868184L;
 	private Color color=Color.BLACK;
 	private boolean selected=false;
+	// private SelectionView selView = new SelectionView();
+	// protected boolean fill = selView.getBtnfill().isSelected();
 	
 	public Shape(){
 

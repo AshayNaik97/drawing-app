@@ -7,9 +7,9 @@ public abstract class SurfaceShape extends Shape{
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 1810110315348316739L;
 
 	private Color innerColor = Color.WHITE;
+	// protected boolean fill = super.fill;
 	
 	public abstract void fill(Graphics g);
 
