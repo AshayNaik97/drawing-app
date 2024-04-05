@@ -2,7 +2,7 @@ package views;
 
 import javax.swing.JPanel;
 
-
+import java.awt.Color;
 import java.awt.GridBagLayout;
 import javax.swing.JButton;
 import java.awt.GridBagConstraints;
@@ -10,7 +10,7 @@ import java.awt.Insets;
 
 public class ShapesView extends JPanel {
 
-	private JButton btnPoint,btnLine,btnSquare,btnRectangle,btnCircle,btnBrush,btnHexagon;
+	private JButton btnLine,btnSquare,btnRectangle,btnCircle,btnBrush;
 	/**
 	 * Create the panel.
 	 */
@@ -24,6 +24,8 @@ public class ShapesView extends JPanel {
 		
 	
 		btnLine = new JButton("Line");
+		btnLine.setOpaque(true);
+		btnLine.setBackground(Color.RED);
 		GridBagConstraints gbc_btnLine = new GridBagConstraints();
 		gbc_btnLine.fill = GridBagConstraints.HORIZONTAL;
 		gbc_btnLine.insets = new Insets(0, 0, 5, 0);
@@ -32,6 +34,8 @@ public class ShapesView extends JPanel {
 		add(btnLine, gbc_btnLine);
 		
 		btnSquare = new JButton("Square");
+		btnSquare.setBackground(Color.WHITE);
+		btnSquare.setOpaque(true);
 		GridBagConstraints gbc_btnSquare = new GridBagConstraints();
 		gbc_btnSquare.fill = GridBagConstraints.HORIZONTAL;
 		gbc_btnSquare.insets = new Insets(0, 0, 5, 0);
@@ -40,6 +44,8 @@ public class ShapesView extends JPanel {
 		add(btnSquare, gbc_btnSquare);
 		
 		btnRectangle = new JButton("Rectangle");
+		btnRectangle.setBackground(Color.WHITE);
+		btnRectangle.setOpaque(true);
 		GridBagConstraints gbc_btnRectangle = new GridBagConstraints();
 		gbc_btnRectangle.fill = GridBagConstraints.HORIZONTAL;
 		gbc_btnRectangle.insets = new Insets(0, 0, 5, 0);
@@ -48,6 +54,8 @@ public class ShapesView extends JPanel {
 		add(btnRectangle, gbc_btnRectangle);
 		
 		btnCircle = new JButton("Circle");
+		btnCircle.setBackground(Color.WHITE);
+		btnCircle.setOpaque(true);
 		GridBagConstraints gbc_btnCircle = new GridBagConstraints();
 		gbc_btnCircle.fill = GridBagConstraints.HORIZONTAL;
 		gbc_btnCircle.insets = new Insets(0, 0, 5, 0);
@@ -56,19 +64,16 @@ public class ShapesView extends JPanel {
 		add(btnCircle, gbc_btnCircle);
 		
 		btnBrush = new JButton("Brush");
+		btnBrush.setBackground(Color.WHITE);
+		btnBrush.setOpaque(true);
 		GridBagConstraints gbc_btnBrush = new GridBagConstraints();
 		gbc_btnBrush.fill = GridBagConstraints.HORIZONTAL;
 		gbc_btnBrush.insets = new Insets(0, 0, 5, 0);
 		gbc_btnBrush.gridx = 0;
 		gbc_btnBrush.gridy = 4;
 		add(btnBrush, gbc_btnBrush);
+
 	}
-	// public JButton getBtnPoint() {
-	// 	return btnPoint;
-	// }
-	// public void setBtnPoint(JButton btnPoint) {
-	// 	this.btnPoint = btnPoint;
-	// }
 	public JButton getBtnLine() {
 		return btnLine;
 	}

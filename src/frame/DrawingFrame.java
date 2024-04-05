@@ -72,12 +72,6 @@ public class DrawingFrame extends JFrame {
 					controller.moveLines(arg0);
 			}
 		});
-		// sViews.getBtnPoint().addActionListener(new ActionListener() {
-		// 	@Override
-		// 	public void actionPerformed(ActionEvent e) {
-		// 		toolsController.pointSelected(e);
-		// 	}
-		// });
 		sViews.getBtnLine().addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -249,10 +243,11 @@ public class DrawingFrame extends JFrame {
 		getContentPane().setLayout(new BorderLayout(0, 0));
 		getContentPane().add(view);
 		
-
+		// sViews.setBackground(new Color(24, 125, 72));
+		// selViews.setBackground(new Color(24, 125, 72));
 		getContentPane().add(sViews, BorderLayout.EAST);
 		
-
+		
 		getContentPane().add(selViews, BorderLayout.NORTH);
 		
 		// getContentPane().add(posView, BorderLayout.EAST);

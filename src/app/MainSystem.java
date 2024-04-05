@@ -1,8 +1,7 @@
-package app.main;
+package app;
 
 import model.ModelUser;
 import java.awt.Color;
-import app.DrawingApp;
 
 public class MainSystem extends javax.swing.JFrame {
 

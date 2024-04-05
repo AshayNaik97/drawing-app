@@ -1,4 +1,4 @@
-package app.main;
+package app;
 
 import controller.component.Message;
 import controller.component.PanelCover;
