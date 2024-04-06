@@ -7,7 +7,7 @@ import java.util.Stack;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
-
+import java.awt.image.BufferedImage;
 import files.AssetLoader;
 import files.FileLoader;
 import files.LogFileLoader;
@@ -15,6 +15,14 @@ import files.SerializableFileLoader;
 import frame.DrawingFrame;
 import model.DrawingModel;
 import shapes.Command;
+import javax.swing.JPanel;
+import java.awt.Graphics2D;
+import java.io.IOException;
+import javax.imageio.ImageIO;
+import java.io.File;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.Files;
 
 public class MenuController implements Serializable {
 	/**
@@ -23,6 +31,7 @@ public class MenuController implements Serializable {
 	private static final long serialVersionUID = 5158203942344909976L;
 	private DrawingModel model;
 	private DrawingFrame frame;
+	private File f;
 	private Stack<Command> undoStack=new Stack<Command>();
 	private Stack<Command> redoStack=new Stack<Command>();
 	
@@ -46,29 +55,92 @@ public class MenuController implements Serializable {
 			frame.getView().repaint();
 			}
 	}
-	public void saveFiles(ActionEvent e) {
-		JFileChooser f = new JFileChooser();
-        f.setFileSelectionMode(JFileChooser.FILES_ONLY); 
-        f.setFileFilter(new FileNameExtensionFilter("serialized file (.ser)", "ser"));
-        f.setFileFilter(new FileNameExtensionFilter("log file (.log)", "log"));
-        f.setDialogTitle("Save log file");
-        int retrival =f.showSaveDialog(null);
-        if (retrival == JFileChooser.APPROVE_OPTION) {
-        	AssetLoader fileLoad;
-        	if(f.getFileFilter().getDescription().equals("serialized file (.ser)")){
-        		fileLoad=new SerializableFileLoader(model,frame);
-        	}else {
-        		fileLoad=new LogFileLoader(model,frame);
-        	}
+	// public void saveFiles(ActionEvent e) {
+
+	// 		// ----------------
+	// 		// Take all the contents of the jpanel and save them to a png 
+	// 		// 		destination is the file they selected via the filechooser
+	// 		// ----------------
+	// 		JFileChooser fc = new JFileChooser();
+	// 		if(fc.showSaveDialog(frame) == JFileChooser.APPROVE_OPTION){
+	// 			f = new File(fc.getSelectedFile() + ".png");	
+	// 			BufferedImage im = makePanel(frame.getView());
+	// 			try {
+	// 				ImageIO.write(im, "png", f);
+	// 			} catch (Exception execp) {
+	// 				System.err.println(execp);
+	// 			}
+	// 		}
+			
+    //     fc.setFileSelectionMode(JFileChooser.FILES_ONLY); 
+    //     fc.setFileFilter(new FileNameExtensionFilter("serialized file (.ser)", "ser"));
+    //     fc.setFileFilter(new FileNameExtensionFilter("log file (.log)", "log"));
+    //     fc.setDialogTitle("Save log file");
+    //     int retrival =fc.showSaveDialog(null);
+    //     if (retrival == JFileChooser.APPROVE_OPTION) {
+    //     	AssetLoader fileLoad;
+    //     	if(fc.getFileFilter().getDescription().equals("serialized file (.ser)")){
+    //     		fileLoad=new SerializableFileLoader(model,frame);
+    //     	}else {
+    //     		fileLoad=new LogFileLoader(model,frame);
+    //     	}
         	
-        	FileLoader fileLoader=new FileLoader(fileLoad);
-        	fileLoader.saveFile(f.getSelectedFile());
+    //     	FileLoader fileLoader=new FileLoader(fileLoad);
+    //     	fileLoader.saveFile(fc.getSelectedFile());
         
+    //     }
+	// }
+
+	public void saveFiles(ActionEvent e) {
+        // ----------------
+        // Take all the contents of the jpanel and save them to a png 
+        // 		destination is the file they selected via the filechooser
+        // ----------------
+		JFileChooser fc = new JFileChooser();
+        String fileName = JOptionPane.showInputDialog(frame, "Enter file name:");
+        if (fileName != null && !fileName.isEmpty()) {
+			Path directory = Paths.get("save"); // Project directory
+			Path folderPath = directory.resolve(fileName);
+			try {
+				Files.createDirectories(folderPath);
+			} catch (IOException ex) {
+				ex.printStackTrace();
+				// return; // Exit if directory creation fails
+			}
+            File f = new File(folderPath.toString(), fileName +".png");
+            BufferedImage im = makePanel(frame.getView());
+            try {
+                ImageIO.write(im, "png", f);
+            } catch (Exception execp) {
+                System.err.println(execp);
+            }
+
+            AssetLoader fileLoad;
+            if (fc.getFileFilter().getDescription().equals("serialized file (.ser)")) {
+                fileLoad = new SerializableFileLoader(model, frame);
+            } else {
+                fileLoad = new LogFileLoader(model, frame);
+            }
+
+            FileLoader fileLoader = new FileLoader(fileLoad);
+			File f1 = new File(folderPath.toString(), fileName);
+            fileLoader.saveFile(f1); // Save the file to project directory
         }
+    }
+
+
+	private BufferedImage makePanel(JPanel panel)
+	{
+	    int w = panel.getWidth();
+	    int h = panel.getHeight();
+	    BufferedImage bi = new BufferedImage(w, h, BufferedImage.TYPE_INT_RGB);
+	    Graphics2D g = bi.createGraphics();
+	    panel.print(g);
+	    return bi;
 	}
 
 	public void openFiles(ActionEvent e)  {
-		JFileChooser f = new JFileChooser();
+		JFileChooser f = new JFileChooser(new File(".","save"));
         f.setFileSelectionMode(JFileChooser.FILES_ONLY); 
         f.setFileFilter(new FileNameExtensionFilter("serialized file (.ser)", "ser"));
         f.setFileFilter(new FileNameExtensionFilter("log file (.log)", "log"));

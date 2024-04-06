@@ -26,6 +26,5 @@ public class DrawingView extends JPanel {
 			}
 		}
 	}
-	
 
 }
