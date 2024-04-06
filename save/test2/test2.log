@@ -1,0 +1,5 @@
+AddSquare_execute_Square(UpperX=423,UpperY=192,a=139,f=false,outercolor=[0-0-0],innercolor=[255-255-255],selected=false)
+AddSquare_execute_Square(UpperX=481,UpperY=153,a=127,f=false,outercolor=[0-0-0],innercolor=[255-255-255],selected=false)
+AddCircle_execute_Circle(X=641,Y=215,r=224,f=false,outercolor=[0-0-0],innercolor=[255-255-255],selected=false)
+AddCircle_execute_Circle(X=633,Y=249,r=121,f=false,outercolor=[0-0-0],innercolor=[255-255-255],selected=false)
+AddCircle_execute_Circle(X=758,Y=241,r=99,f=false,outercolor=[0-0-0],innercolor=[255-255-255],selected=false)
