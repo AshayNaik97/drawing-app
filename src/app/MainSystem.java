@@ -2,6 +2,7 @@ package app;
 
 import model.ModelUser;
 import java.awt.Color;
+import app.HomeMain;
 
 public class MainSystem extends javax.swing.JFrame {
 
@@ -52,8 +53,10 @@ public class MainSystem extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 // new MainSystem(user).setVisible(true);
-                DrawingApp da = new DrawingApp();
-                da.main(null);
+                // DrawingApp da = new DrawingApp();
+                // da.main(null);
+                HomeMain hm = new HomeMain();
+                hm.main(user.getUserName());
             }
         });
     }
