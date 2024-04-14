@@ -34,6 +34,13 @@ public class Square extends SurfaceShape implements Movable{
 		setfill(fill);
 		setInnerColor(inner);
 	}
+
+	public Square(Point upperLeft, int sideLength,boolean fill, Color outer, Color inner, Long groupNumber) {
+		this(upperLeft, sideLength, outer);
+		this.groupNum = groupNumber;
+		setfill(fill);
+		setInnerColor(inner);
+	}
 	
 	public Line diagonal() {
 		return new Line(upperLeft, new Point(upperLeft.getX() + sideLength, upperLeft.getY() + sideLength));

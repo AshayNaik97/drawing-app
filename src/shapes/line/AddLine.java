@@ -8,6 +8,7 @@ public class AddLine implements Command {
 
 	private DrawingModel model;
 	private Line line;
+	public Long groupNum=0L;
 	public AddLine(DrawingModel model,Line line) {
 		this.model=model;
 		this.line=line;
@@ -20,6 +21,11 @@ public class AddLine implements Command {
 	@Override
 	public void unexecute() {
 		model.remove(line);
+	}
+
+	@Override
+	public Long getGroupNum(){
+		return groupNum;
 	}
 
 }

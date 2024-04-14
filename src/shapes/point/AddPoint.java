@@ -9,6 +9,7 @@ public class AddPoint implements Command{
 	private static final long serialVersionUID = -6915180535847086968L;
     private DrawingModel model;
     private Point point;
+	public Long groupNum;
     
 	public AddPoint(DrawingModel model, Point point) {
 		this.model = model;
@@ -23,6 +24,11 @@ public class AddPoint implements Command{
 	@Override
 	public void unexecute() {
 		model.remove(point);
+	}
+
+	@Override
+	public Long getGroupNum(){
+		return groupNum;
 	}
 
 }

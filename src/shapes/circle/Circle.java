@@ -39,6 +39,13 @@ public class Circle extends SurfaceShape implements Movable  {
 		setFill(fill);
 	}
 
+	public Circle(Point center, int radius, boolean fill ,Color outerColor, Color innerColor, Long groupNumber) {
+		this(center, radius, outerColor);
+		this.groupNum = groupNumber;
+		setInnerColor(innerColor);
+		setFill(fill);
+	}
+
 	public double surfaceArea() {
 		return Math.pow(radius, 2) * Math.PI;
 	}

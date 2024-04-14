@@ -51,7 +51,8 @@ public class DrawingController implements Serializable {
 	private Rectangle prevRectangle =null;
 	private Point updatedStart = null;
 	private Point stop;
-	
+
+	private Long groupNumber=0L;
 
 	public DrawingController(DrawingModel model, DrawingFrame frame) {
 
@@ -248,9 +249,9 @@ public class DrawingController implements Serializable {
 				start = new Point(arg0.getX(), arg0.getY(), frame.getToolsController().getOuter());
 				startSquare = new Square(new Point(start.getX() - 3, start.getY() - 3), 6);
 
-
+				groupNumber++;
 				model.add(startSquare);
-				model.add(start);
+				// model.add(start);
 				draw = true;
 				frame.getView().repaint();
 			}
@@ -287,15 +288,18 @@ public class DrawingController implements Serializable {
 		Color outer = frame.getToolsController().getOuter();
 		if (start != null) {
 			if (frame.getToolsController().getSelection() == 2) {
-				Line l = new Line(start, new Point(arg0.getX(), arg0.getY(), outer), outer);
+				
+				Line l = new Line(start, new Point(arg0.getX(), arg0.getY(), outer), groupNumber, outer);
 
 				l.setStrokeSize(frame.getBrush().getStrokeSize());
 				l.addObserver(observer);
 			
 				if (l.length() > 3) {
 					RemoveLine cmd1 = new RemoveLine(model, prevLine);
+					cmd1.groupNum = groupNumber;
 					cmd1.execute(); 
 					AddLine cmd = new AddLine(model, l);
+					cmd.groupNum = groupNumber;
 					cmd.execute();
 					frame.getToolsController().LogCommand(cmd, true, l, null);
 					frame.getToolsController().addUndo(cmd, frame.getToolsController().transCmd(cmd, true, l, null));
@@ -305,12 +309,15 @@ public class DrawingController implements Serializable {
 				Point end = new Point(arg0.getX(), arg0.getY(), Color.RED);
 
 				int distance = Math.min(Math.abs(start.getX() - end.getX()), Math.abs(start.getY() - end.getY()));
-				Square s = new Square(updatedStart, distance, frame.getToolsController().fillCommand(), outer, inner);
+				
+				Square s = new Square(updatedStart, distance, frame.getToolsController().fillCommand(), outer, inner,groupNumber);
 				// s.addObserver(observer);
 				if (s.surfaceArea() > 3) {
 					RemoveSquare cmd1 = new RemoveSquare(model, prevSquare);
+					cmd1.groupNum = groupNumber;
 					cmd1.execute();
 					AddSquare cmd = new AddSquare(model, s);
+					cmd.groupNum = groupNumber;
 					cmd.execute();
 					frame.getToolsController().LogCommand(cmd, true, s, null);
 					frame.getToolsController().addUndo(cmd, frame.getToolsController().transCmd(cmd, true, s, null));
@@ -321,13 +328,16 @@ public class DrawingController implements Serializable {
 				Point end = new Point(arg0.getX(), arg0.getY(), Color.RED);
 
 				// directionAssitant(start, end);
+				
 				Rectangle r = new Rectangle(updatedStart, Math.abs(start.getY() - end.getY()),
-						Math.abs(start.getX() - end.getX()),frame.getToolsController().fillCommand(), outer, inner);
+						Math.abs(start.getX() - end.getX()),frame.getToolsController().fillCommand(), outer, inner,groupNumber);
 				// r.addObserver(observer);
 				if (r.surfaceArea() > 3) {
 					RemoveRectangle cmd1 = new RemoveRectangle(model, prevRectangle);
+					cmd1.groupNum = groupNumber;
 					cmd1.execute();
 					AddRectangle cmd = new AddRectangle(model, r);
+					cmd.groupNum = groupNumber;
 					frame.getToolsController().LogCommand(cmd, true, r, null);
 					cmd.execute();
 					frame.getToolsController().addUndo(cmd, frame.getToolsController().transCmd(cmd, true, r, null));
@@ -335,13 +345,16 @@ public class DrawingController implements Serializable {
 			}
 
 			if (frame.getToolsController().getSelection() == 5) {
+				
 				Circle c = new Circle(start, (int) start.distance(new Point(arg0.getX(), arg0.getY(), outer)),frame.getToolsController().fillCommand(), outer,
-						inner);
+						inner,groupNumber);
 
 				if (c.getRadius() > 3) {
 					RemoveCircle cmd1 = new RemoveCircle(model, prevCircle);
+					cmd1.groupNum = groupNumber;
 					cmd1.execute();
 					AddCircle cmd = new AddCircle(model, c);
+					cmd.groupNum = groupNumber;
 					frame.getToolsController().LogCommand(cmd, true, c, null);
 					cmd.execute();
 					frame.getToolsController().addUndo(cmd, frame.getToolsController().transCmd(cmd, true, c, null));
@@ -369,11 +382,16 @@ public class DrawingController implements Serializable {
 			Color outer = frame.getToolsController().getOuter();
 			if (start != null) {
 				if (frame.getToolsController().getSelection() > 6) {
-					Line l = new Line(start, new Point(arg0.getX(), arg0.getY(), outer), outer);
+					
+					Line l = new Line(start, new Point(arg0.getX(), arg0.getY(), outer), groupNumber, outer);
 					l.setStrokeSize(frame.getBrush().getStrokeSize());
 					l.addObserver(observer);
 					if (l.length() > 0) {
+						RemoveLine cmd1 = new RemoveLine(model, prevLine);
+						cmd1.groupNum = groupNumber;
+						cmd1.execute(); 
 						AddLine cmd = new AddLine(model, l);
+						cmd.groupNum = groupNumber;
 						cmd.execute();
 						frame.getToolsController().LogCommand(cmd, true, l, null);
 						frame.getToolsController().addUndo(cmd,

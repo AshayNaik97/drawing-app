@@ -8,6 +8,7 @@ public class RemoveRectangle implements Command{
 
 	private DrawingModel model;
 	private Rectangle rectangle;
+	public Long groupNum=0L;
 	public RemoveRectangle(DrawingModel model, Rectangle rectangle) {
 		this.model = model;
 		this.rectangle = rectangle;
@@ -22,5 +23,10 @@ public class RemoveRectangle implements Command{
 	public void unexecute() {
 		model.add(rectangle);
 	}
+	
+	@Override
+	public Long getGroupNum(){
+		return groupNum;
+	}	
 
 }

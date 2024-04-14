@@ -27,4 +27,9 @@ public class BringToFrontCommand implements Command {
 	public void unexecute() {
 		Collections.swap(model.getAll(), model.getAll().size()-1, oldState);
 	}
+
+	@Override
+	public Long getGroupNum(){
+		return 0L;
+	}
 }

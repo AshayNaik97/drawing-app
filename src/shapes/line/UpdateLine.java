@@ -28,4 +28,9 @@ public class UpdateLine implements Command{
 		originalState.setSelected(oldState.isSelected());
 	}
 
+	@Override
+	public Long getGroupNum(){
+		return 0L;
+	}
+
 }
