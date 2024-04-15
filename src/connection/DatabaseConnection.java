@@ -21,8 +21,9 @@ public class DatabaseConnection {
 
     public void connectToDatabase() throws SQLException {
         String server = "localhost";
-        String port = "3306"; // your sql port number
-        String database = "login";
+        String port = "3306";
+        String database = "draw";
+
         String userName = "root";
         String password = "your_sql_password";
         connection = java.sql.DriverManager.getConnection("jdbc:mysql://" + server + ":" + port + "/" + database, userName, password);

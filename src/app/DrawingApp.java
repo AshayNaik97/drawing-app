@@ -10,6 +10,7 @@ import controller.ToolsController;
 import frame.DrawingFrame;
 import logging.LogHandler;
 import model.DrawingModel;
+import model.ModelUser;
 import files.AssetLoader;
 import files.LogFileLoader;
 import java.nio.file.Path;
@@ -17,30 +18,32 @@ import java.nio.file.Paths;
 import java.nio.file.Files;
 
 public class DrawingApp {
+	public static String currentDir;
 
-	public static void main(String file) {
+	public static void main(String file,ModelUser user) {
+		currentDir = "./save/"+user.getUserName()+user.getEmail();
 		AssetLoader fileLoad;	
 		DrawingModel model = new DrawingModel();
 		DrawingFrame frame = new DrawingFrame();
-		frame.getView().setModel(model);
 		DrawingController controller = new DrawingController(model, frame);
-		frame.setController(controller);
 		ToolsController tController=new ToolsController(model, frame);
 		MenuController mController=new MenuController(model, frame);
-		
 		Logger globalLogger = Logger.getLogger("global");
-		globalLogger.setUseParentHandlers(false);
-		globalLogger.addHandler(new LogHandler(frame));
+
+		frame.getView().setModel(model);
+		frame.setController(controller);
 		frame.setMenuController(mController);
 		frame.setToolsController(tController);
+		
+		globalLogger.setUseParentHandlers(false);
+		globalLogger.addHandler(new LogHandler(frame));
 		frame.setSize(1200, 700);
-		// frame.setSize(600, 300);
 		frame.setVisible(true);
 		frame.setResizable(true);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		if(file != null){
 			System.out.println("tryna load");
-			Path directory = Paths.get("save"); // Project directory
+			Path directory = Paths.get(currentDir);
 			Path folderPath = directory.resolve(file);
 			File f = new File(folderPath.toString(), file +".log");
 			System.out.println(f);

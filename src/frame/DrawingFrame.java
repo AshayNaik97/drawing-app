@@ -18,7 +18,8 @@ import views.PositionView;
 import views.SelectionView;
 import views.ShapesView;
 import brush.Brush;
-
+import javax.swing.*;
+import java.awt.event.*;
 import java.awt.Color;
 
 public class DrawingFrame extends JFrame {
@@ -32,7 +33,7 @@ public class DrawingFrame extends JFrame {
 	private boolean actModify=false,actDelete=false,actPosition=false;
 	private Brush brush = new Brush();
 	private DrawingController controller;
-	
+	public static String currentDirectory;
 
 	public DrawingView getView() {
 		return view;
@@ -48,6 +49,13 @@ public class DrawingFrame extends JFrame {
 	public DrawingFrame() {
 		setTitle("Drawing App");
 		view.setBackground(Color.WHITE);
+		addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                menuController.saveFiles();
+				dispose();
+            }
+        });
 		view.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
