@@ -20,18 +20,16 @@ import javax.swing.JLabel;
 public class HomeView extends JPanel {
     private JFrame frame;
     private JPanel panel;
-    private HomeModel model;
-    private String user;
-    private int i =0;
-    private int j =0;
-	public HomeView(HomeModel model,String user) {
-        this.model = model;
+    // private HomeModel model;
+    private ModelUser user;
+	public HomeView(ModelUser user) {
+        // this.model = model;
         this.user = user;
         initialize();
     }
 
     public void initialize() {
-        frame = new JFrame("Image Buttons");
+        frame = new JFrame("Draw");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(1200, 700);
 		frame.setVisible(true);
@@ -43,25 +41,15 @@ public class HomeView extends JPanel {
 		gridBagLayout.rowHeights = new int[]{26, 0};
 		gridBagLayout.columnWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		gridBagLayout.rowWeights = new double[]{0.0, Double.MIN_VALUE};
-		// gridBagLayout.setBackground(Color.green);
 		setLayout(gridBagLayout);
-        // JButton create = new JButton("new draw");
-        // JButton logout = new JButton("Log Out");
-        JLabel lab = new JLabel("Welcome Back "+user.toUpperCase(), SwingConstants.CENTER);
+        JLabel lab = new JLabel("Welcome Back "+user.getUserName().toUpperCase(), SwingConstants.CENTER);
         panel.add(lab);
-        // panel.add(logout);
-        // logout.addActionListener(listener);
-        // panel.add(create);
-        // create.addActionListener(listener);
     }
 
     public void addDrawing(String folderName, String imageName, ActionListener listener) {
-            ImageIcon icon = new ImageIcon("./save/" + folderName + "/" + imageName);
+            ImageIcon icon = new ImageIcon("./save/"+user.getUserName()+user.getEmail()+"/" + folderName + "/" + imageName);
             JButton button = new JButton(folderName,resizeImageIcon(icon,300,200));
             button.addActionListener(listener);
-            // if(j==3){
-            //     j=0;
-            // }
             panel.add(button);
             frame.revalidate();
     }

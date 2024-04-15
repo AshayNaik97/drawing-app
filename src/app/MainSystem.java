@@ -55,8 +55,8 @@ public class MainSystem extends javax.swing.JFrame {
                 // new MainSystem(user).setVisible(true);
                 // DrawingApp da = new DrawingApp();
                 // da.main(null);
-                HomeMain hm = new HomeMain();
-                hm.main(user.getUserName());
+                HomeMain homemain = new HomeMain();
+                homemain.main(user);
             }
         });
     }
