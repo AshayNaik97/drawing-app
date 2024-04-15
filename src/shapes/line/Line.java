@@ -20,14 +20,25 @@ public class Line extends Shape{
 	public Line() {
 
 	}
-	
+
 	public Line(Point pointStart, Point pointEnd) {
 		this.pointStart = pointStart;
 		this.pointEnd = pointEnd;
 	}
 	
-	public Line(Point pointStart, Point pointEnd,Color color) {
+	public Line(Point pointStart, Point pointEnd, Long groupNumber) {
+		this.pointStart = pointStart;
+		this.pointEnd = pointEnd;
+		this.groupNum = groupNumber;
+	}
+
+	public Line(Point pointStart, Point pointEnd, Color color) {
 		this(pointStart,pointEnd);
+		setColor(color);
+	}
+	
+	public Line(Point pointStart, Point pointEnd, Long groupNumber, Color color) {
+		this(pointStart,pointEnd,groupNumber);
 		setColor(color);
 	}
 
@@ -124,7 +135,7 @@ public class Line extends Shape{
 	}
 
 	public Line clone() {
-		Line l=new Line(pointStart.clone(),pointEnd.clone(),this.getColor());
+		Line l=new Line(pointStart.clone(),pointEnd.clone(),this.groupNum,this.getColor());
 		l.setSelected(isSelected());
 		return l;
 	}

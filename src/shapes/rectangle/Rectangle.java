@@ -30,6 +30,13 @@ public class Rectangle extends Square{
 		setInnerColor(innerColor);
 	}
 
+	public Rectangle(Point upperLeft, int height, int width, boolean fill, Color outerColor, Color innerColor, Long groupNumber) {
+		this(upperLeft, height, width, outerColor);
+		this.groupNum = groupNumber;
+		setFill(fill);
+		setInnerColor(innerColor);
+	}
+
 	@Override
 	public Line diagonal() {
 		return new Line(upperLeft, new Point(upperLeft.getX() + width, upperLeft.getY() + sideLength));

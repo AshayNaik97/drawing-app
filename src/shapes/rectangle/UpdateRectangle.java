@@ -37,4 +37,9 @@ public class UpdateRectangle implements Command{
 		originalState.setFill(oldState.getFill());
 	}
 
+	@Override
+	public Long getGroupNum(){
+		return 0L;
+	}
+
 }

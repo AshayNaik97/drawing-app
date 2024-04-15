@@ -13,6 +13,7 @@ public abstract class Shape extends Observable implements Comparable<Shape>, Ser
 	 */
 	private Color color=Color.BLACK;
 	private boolean selected=false;
+	public Long groupNum=0L;
 	// private SelectionView selView = new SelectionView();
 	// protected boolean fill = selView.getBtnfill().isSelected();
 	

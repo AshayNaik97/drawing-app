@@ -27,4 +27,9 @@ public class BringToBackCommand implements Command{
 		Collections.swap(model.getAll(), 0, oldState);
 	}
 
+	@Override
+	public Long getGroupNum(){
+		return 0L;
+	}
+
 }

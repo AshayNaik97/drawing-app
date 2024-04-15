@@ -8,6 +8,7 @@ public class AddCircle implements Command{
 
 	private DrawingModel model;
 	private Circle circle;
+	public Long groupNum=0L;
 	public AddCircle(DrawingModel model, Circle circle) {
 		this.model = model;
 		this.circle = circle;
@@ -21,6 +22,11 @@ public class AddCircle implements Command{
 	@Override
 	public void unexecute() {
 		model.remove(circle);
+	}
+
+	@Override
+	public Long getGroupNum(){
+		return groupNum;
 	}
 
 }

@@ -478,19 +478,37 @@ public class ToolsController implements Serializable {
 	}
 
 	public void doUndo() {
+		Long gn = frame.getMenuController().getUndoStack().peek().getGroupNum();
 		frame.getMenuController().getUndoStack().peek().unexecute();
 		frame.getMenuController().getRedoStack().push(frame.getMenuController().getUndoStack().pop());
 
 		globalLogger.info(frame.getMenuController().getUndoStackLog().peek().replace("_execute_", "_unexecute_"));
 		frame.getMenuController().getRedoStackLog().push(frame.getMenuController().getUndoStackLog().pop());
+
+		while(!frame.getMenuController().getUndoStack().empty() && gn == frame.getMenuController().getUndoStack().peek().getGroupNum()){
+			frame.getMenuController().getUndoStack().peek().unexecute();
+			frame.getMenuController().getRedoStack().push(frame.getMenuController().getUndoStack().pop());
+	
+			globalLogger.info(frame.getMenuController().getUndoStackLog().peek().replace("_execute_", "_unexecute_"));
+			frame.getMenuController().getRedoStackLog().push(frame.getMenuController().getUndoStackLog().pop());	
+		}
 	}
 
 	public void doRedo() {
+		Long gn = frame.getMenuController().getRedoStack().peek().getGroupNum();
 		frame.getMenuController().getRedoStack().peek().execute();
 		frame.getMenuController().getUndoStack().push(frame.getMenuController().getRedoStack().pop());
 
 		globalLogger.info(frame.getMenuController().getRedoStackLog().peek().replace("_unexecute_", "_execute_"));
 		frame.getMenuController().getUndoStackLog().push(frame.getMenuController().getRedoStackLog().pop());
+
+		while(!frame.getMenuController().getRedoStack().empty() && gn == frame.getMenuController().getRedoStack().peek().getGroupNum()){
+			frame.getMenuController().getRedoStack().peek().execute();
+			frame.getMenuController().getUndoStack().push(frame.getMenuController().getRedoStack().pop());
+	
+			globalLogger.info(frame.getMenuController().getRedoStackLog().peek().replace("_unexecute_", "_execute_"));
+			frame.getMenuController().getUndoStackLog().push(frame.getMenuController().getRedoStackLog().pop());	
+		}
 	}
 
 	public void bringToBack(ActionEvent e) {

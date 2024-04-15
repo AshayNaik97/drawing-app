@@ -35,4 +35,9 @@ public class UpdateSquare implements Command{
 		originalState.setfill(oldState.getfill());
 	}
 
+	@Override
+	public Long getGroupNum(){
+		return 0L;
+	}
+
 }
