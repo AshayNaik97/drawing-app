@@ -15,6 +15,7 @@ public class ShapesView extends JPanel {
 	 * Create the panel.
 	 */
 	public ShapesView() {
+		setBackground(new Color(22, 117, 67));
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[]{73, 0};
 		gridBagLayout.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0};
