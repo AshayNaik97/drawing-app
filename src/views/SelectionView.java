@@ -7,6 +7,7 @@ import javax.swing.JButton;
 import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
+import javax.swing.border.*;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JRadioButton;
@@ -31,6 +32,7 @@ public class SelectionView extends JPanel {
 	 * Create the panel.
 	 */
 	public SelectionView() {
+		setBackground(new Color(22, 117, 67));
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[]{0, 0, 0, 31, 45, 46, 67, 63, 61, 62, 59, 52, 46, 0};
 		gridBagLayout.rowHeights = new int[]{26, 0};
@@ -45,6 +47,8 @@ public class SelectionView extends JPanel {
 		gbc_btnNew.insets = new Insets(0, 0, 0, 5);
 		gbc_btnNew.gridx = 0;
 		gbc_btnNew.gridy = 0;
+		btnNew.setBackground(new Color(22, 117, 67));
+		// btnNew.setForeground(new Color(250, 250, 250));
 		add(btnNew, gbc_btnNew);
 		
 		btnOpen = new JButton("open");
@@ -53,6 +57,8 @@ public class SelectionView extends JPanel {
 		gbc_btnOpen.insets = new Insets(0, 0, 0, 5);
 		gbc_btnOpen.gridx = 1;
 		gbc_btnOpen.gridy = 0;
+		btnOpen.setBackground(new Color(22, 117, 67));
+		// btnOpen.setForeground(new Color(250, 250, 250));
 		add(btnOpen, gbc_btnOpen);
 		
 		btnSave = new JButton("save");
@@ -61,6 +67,8 @@ public class SelectionView extends JPanel {
 		gbc_btnSave.insets = new Insets(0, 0, 0, 5);
 		gbc_btnSave.gridx = 2;
 		gbc_btnSave.gridy = 0;
+		btnSave.setBackground(new Color(22, 117, 67));
+		// btnSave.setForeground(new Color(250, 250, 250));
 		add(btnSave, gbc_btnSave);
 		
 		btnUndo = new JButton("Undo"); //new ImageIcon(SelectionView.class.getResource("../../resources/images/pok4.png"))
@@ -70,6 +78,8 @@ public class SelectionView extends JPanel {
 		gbc_btnUndo.insets = new Insets(0, 0, 0, 5);
 		gbc_btnUndo.gridx = 4;
 		gbc_btnUndo.gridy = 0;
+		btnUndo.setBackground(new Color(22, 117, 67));
+		// btnUndo.setForeground(new Color(250, 250, 250));
 		add(btnUndo, gbc_btnUndo);
 		
 		btnRedo = new JButton("Redo"); //new ImageIcon(SelectionView.class.getResource("../../resources/images/pok42.png"))
@@ -79,6 +89,8 @@ public class SelectionView extends JPanel {
 		gbc_btnRedo.insets = new Insets(0, 0, 0, 5);
 		gbc_btnRedo.gridx = 5;
 		gbc_btnRedo.gridy = 0;
+		btnRedo.setBackground(new Color(22, 117, 67));
+		// btnRedo.setForeground(new Color(250, 250, 250));
 		add(btnRedo, gbc_btnRedo);
 		
 		JLabel lblColors = new JLabel("Colors:");
@@ -95,6 +107,8 @@ public class SelectionView extends JPanel {
 		gbc_btnOutter.insets = new Insets(0, 0, 0, 5);
 		gbc_btnOutter.gridx = 7;
 		gbc_btnOutter.gridy = 0;
+		btnOutter.setBackground(new Color(22, 117, 67));
+		// btnOutter.setForeground(new Color(250, 250, 250));
 		add(btnOutter, gbc_btnOutter);
 		
 		btnInner = new JButton("");
@@ -103,6 +117,8 @@ public class SelectionView extends JPanel {
 		gbc_btnInner.fill = GridBagConstraints.BOTH;
 		gbc_btnInner.gridx = 8;
 		gbc_btnInner.gridy = 0;
+		btnInner.setBackground(new Color(22, 117, 67));
+		// btnInner.setForeground(new Color(250, 250, 250));
 		add(btnInner, gbc_btnInner);
 		
 		JLabel strokeSize = new JLabel("StrokeSize");
@@ -121,6 +137,8 @@ public class SelectionView extends JPanel {
 		gbc_btnPlus.gridx = 10;
 		gbc_btnPlus.gridy = 0;
 		// gbc_btnPlus.weightx = 1;
+		btnPlus.setBackground(new Color(22, 117, 67));
+		// btnPlus.setForeground(new Color(250, 250, 250));
 		add(btnPlus, gbc_btnPlus);
 
 		btnMinus = new JButton("-");
@@ -130,6 +148,8 @@ public class SelectionView extends JPanel {
 		gbc_btnMinus.gridx = 11;
 		gbc_btnMinus.gridy = 0;
 		// gbc_btnMinus.weightx = 1;
+		btnMinus.setBackground(new Color(22, 117, 67));
+		// btnMinus.setForeground(new Color(250, 250, 250));
 		add(btnMinus, gbc_btnMinus);
 		
 		btnSelect = new JButton("Select");
@@ -138,6 +158,8 @@ public class SelectionView extends JPanel {
 		gbc_btnSelect.gridx = 12;
 		gbc_btnSelect.gridy = 0;
 		// gbc_btnSelect.weightx = 1;
+		btnSelect.setBackground(new Color(22, 117, 67));
+		// btnSelect.setForeground(new Color(250, 250, 250));
 		add(btnSelect, gbc_btnSelect);
 		
 		btnModify = new JButton("Modify");
@@ -147,6 +169,8 @@ public class SelectionView extends JPanel {
 		gbc_btnModify.gridx = 13;
 		gbc_btnModify.gridy = 0;
 		// gbc_btnModify.weightx = 1;
+		btnModify.setBackground(new Color(22, 117, 67));
+		// btnModify.setForeground(new Color(250, 250, 250));
 		add(btnModify, gbc_btnModify);
 		
 		btnDelete = new JButton("Delete");
@@ -155,10 +179,13 @@ public class SelectionView extends JPanel {
 		gbc_btnDelete.gridx = 14;
 		gbc_btnDelete.gridy = 0;
 		// gbc_btnDelete.weightx = 1;
+		btnDelete.setBackground(new Color(22, 117, 67));
+		// btnDelete.setForeground(new Color(250, 250, 250));
 		add(btnDelete, gbc_btnDelete);
 
 		btnFill = new JRadioButton("fill"); //new ImageIcon(SelectionView.class.getResource("../../resources/images/pok4.png"))
 		btnFill.setSelected(false);
+		// btnFill.setForeground(Color.WHITE);
 		add(btnFill);
 		
 	}

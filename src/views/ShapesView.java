@@ -10,11 +10,12 @@ import java.awt.Insets;
 
 public class ShapesView extends JPanel {
 
-	private JButton btnLine,btnSquare,btnRectangle,btnCircle,btnBrush;
+	private JButton btnLine,btnSquare,btnRectangle,btnCircle,btnBrush,btnEraser;
 	/**
 	 * Create the panel.
 	 */
 	public ShapesView() {
+		setBackground(new Color(22, 117, 67));
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[]{73, 0};
 		gridBagLayout.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0};
@@ -73,6 +74,16 @@ public class ShapesView extends JPanel {
 		gbc_btnBrush.gridy = 4;
 		add(btnBrush, gbc_btnBrush);
 
+		btnEraser = new JButton("Eraser");
+		btnEraser.setBackground(Color.WHITE);
+		btnEraser.setOpaque(true);
+		GridBagConstraints gbc_btnEraser = new GridBagConstraints();
+		gbc_btnEraser.fill = GridBagConstraints.HORIZONTAL;
+		gbc_btnEraser.insets = new Insets(0, 0, 5, 0);
+		gbc_btnEraser.gridx = 0;
+		gbc_btnEraser.gridy = 5;
+		add(btnEraser, gbc_btnEraser);
+
 	}
 	public JButton getBtnLine() {
 		return btnLine;
@@ -103,6 +114,12 @@ public class ShapesView extends JPanel {
 	}
 	public void setBtnBrush(JButton btnBrush) {
 		this.btnBrush = btnBrush;
+	}
+	public JButton getBtnEraser() {
+		return btnEraser;
+	}
+	public void setBtnEraser(JButton btnEraser) {
+		this.btnEraser = btnEraser;
 	}
 
 }

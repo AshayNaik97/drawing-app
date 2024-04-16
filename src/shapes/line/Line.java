@@ -80,6 +80,7 @@ public class Line extends Shape{
 
 	@Override
 	public void draw(Graphics g) {
+		// paintComponent(g);
 		Graphics2D g2 = (Graphics2D) g;
 		g2.setColor(getColor());
 		g2.setStroke(new BasicStroke(strokeSize));
@@ -87,6 +88,25 @@ public class Line extends Shape{
 		if (isSelected())
 			selected(g2);
 
+	}
+
+	public void paintComponent(Graphics g){
+		Graphics2D g2d = (Graphics2D) g;
+		g2d.setColor(getColor());
+		g2d.setStroke(new BasicStroke(strokeSize));
+
+		double dx = pointEnd.getX() - pointStart.getX();
+		double dy = pointEnd.getY() - pointStart.getY();
+		double angle = Math.atan2(dy,dx);
+
+		int arcSize = 8;
+
+		int x1 = pointStart.getX();
+		int y1 = pointStart.getY();
+		int x2 = pointEnd.getX();
+		int y2 = pointEnd.getY();
+		g2d.fillArc(x1 - arcSize/2, y1 - arcSize/2, arcSize, arcSize, (int) Math.toDegrees(angle) - 90, 180);
+		g2d.fillArc(x2 - arcSize/2, y2 - arcSize/2, arcSize, arcSize, (int) Math.toDegrees(angle) + 90, 180);
 	}
 
 	@Override

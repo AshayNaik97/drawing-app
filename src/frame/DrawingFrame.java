@@ -111,6 +111,13 @@ public class DrawingFrame extends JFrame {
 				toolsController.brushSelected(e);
 			}
 		});
+
+		sViews.getBtnEraser().addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				toolsController.eraserSelected(e);
+			}
+		});
 		selViews.getBtnInner().addActionListener(new ActionListener() {
 			
 			@Override
