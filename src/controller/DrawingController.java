@@ -383,6 +383,8 @@ public class DrawingController implements Serializable {
 			ShapeObserver observer = new ShapeObserver(model, frame);
 			// Color inner = frame.getToolsController().getInner();
 			Color outer = frame.getToolsController().getOuter();
+			if(frame.getToolsController().getSelection()==8) outer = Color.WHITE;
+
 			if (start != null && (Math.abs(start.getX()-stop.getX())>=20 || Math.abs(start.getY()-stop.getY())>=20 || count > 6)) {
 				count = 0;
 				if (frame.getToolsController().getSelection() > 6) {
