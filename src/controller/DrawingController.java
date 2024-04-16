@@ -1,5 +1,6 @@
 package controller;
 
+import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.event.MouseEvent;
 import java.io.Serializable;
@@ -42,6 +43,7 @@ public class DrawingController implements Serializable {
 	private Square startSquare;
 	private Line drag;
 	private boolean draw = false;
+	private int count=0;
 
 	private boolean isDraged = false;
 	private Point prevStop;
@@ -147,6 +149,7 @@ public class DrawingController implements Serializable {
 		if (start != null) {
 			if (frame.getToolsController().getSelection() == 2) {
 				Line l = new Line(start, new Point(arg0.getX(), arg0.getY(), outer), outer);
+				l.setStrokeSize(frame.getBrush().getStrokeSize());
 				if (l.length() > 3) {
 					if (prevLine != null && prevStop != curEndpPoint) {
 						RemoveLine cmd = new RemoveLine(model, prevLine);
@@ -250,7 +253,7 @@ public class DrawingController implements Serializable {
 				startSquare = new Square(new Point(start.getX() - 3, start.getY() - 3), 6);
 
 				groupNumber++;
-				model.add(startSquare);
+				// model.add(startSquare);
 				// model.add(start);
 				draw = true;
 				frame.getView().repaint();
@@ -277,7 +280,7 @@ public class DrawingController implements Serializable {
 		draw = false;
 
 		model.remove(start);
-		model.remove(startSquare);
+		// model.remove(startSquare);
 		model.remove(stop);
 		model.remove(drag);
 		stop = null;
@@ -380,7 +383,8 @@ public class DrawingController implements Serializable {
 			ShapeObserver observer = new ShapeObserver(model, frame);
 			// Color inner = frame.getToolsController().getInner();
 			Color outer = frame.getToolsController().getOuter();
-			if (start != null) {
+			if (start != null && (Math.abs(start.getX()-stop.getX())>=20 || Math.abs(start.getY()-stop.getY())>=20 || count > 6)) {
+				count = 0;
 				if (frame.getToolsController().getSelection() > 6) {
 					
 					Line l = new Line(start, new Point(arg0.getX(), arg0.getY(), outer), groupNumber, outer);
@@ -401,7 +405,7 @@ public class DrawingController implements Serializable {
 				start = stop;
 				frame.getView().repaint();
 				frame.getToolsController().updateButtons();
-			}
+			}else count++;
 		}
 	}
 
