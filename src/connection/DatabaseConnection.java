@@ -5,7 +5,7 @@ import java.sql.SQLException;
 
 public class DatabaseConnection {
 
-    private static DatabaseConnection instance;
+    public static DatabaseConnection instance;
     private Connection connection;
 
     public static DatabaseConnection getInstance() {
@@ -25,7 +25,8 @@ public class DatabaseConnection {
         String database = "login";
 
         String userName = "root";
-        String password = "arb12345";
+        String password = "sqlpasswd";
+
         connection = java.sql.DriverManager.getConnection("jdbc:mysql://" + server + ":" + port + "/" + database, userName, password);
     }
 
