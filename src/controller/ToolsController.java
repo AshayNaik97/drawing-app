@@ -44,7 +44,7 @@ public class ToolsController implements Serializable {
 	private DrawingModel model;
 	private DrawingFrame frame;
 	private int selection = 1;
-	private final Color btnColor = Color.gray;
+	private final Color btnColor = new Color(204, 0, 204);
 	private Color inner = Color.WHITE, outer = Color.BLACK;
 	private boolean enterSelecting = false;
 	private Logger globalLogger = Logger.getLogger("global");
@@ -86,28 +86,47 @@ public class ToolsController implements Serializable {
 		selection=7;
 		changeButtonCollor();
 	}
+	public void eraserSelected(ActionEvent e) {
+		selection=8;
+		changeButtonCollor();
+	}
 
 	public void changeButtonCollor() {
 		// frame.getSViews().getBtnPoint().setBackground(null);
 		frame.getSViews().getBtnLine().setBackground(null);
+		frame.getSViews().getBtnLine().setForeground(null);
 		frame.getSViews().getBtnSquare().setBackground(null);
+		frame.getSViews().getBtnSquare().setForeground(null);
 		frame.getSViews().getBtnRectangle().setBackground(null);
+		frame.getSViews().getBtnRectangle().setForeground(null);
 		frame.getSViews().getBtnCircle().setBackground(null);
+		frame.getSViews().getBtnCircle().setForeground(null);
 		frame.getSViews().getBtnBrush().setBackground(null);
+		frame.getSViews().getBtnBrush().setForeground(null);
+		frame.getSViews().getBtnEraser().setBackground(null);
+		frame.getSViews().getBtnEraser().setForeground(null);
 		// if(selection==1) {
 
 		// 	frame.getSViews().getBtnPoint().setBackground(btnColor);
 		// } 
 	 	if (selection == 2) {
 			frame.getSViews().getBtnLine().setBackground(btnColor);
+			frame.getSViews().getBtnLine().setForeground(Color.WHITE);
 		} else if (selection == 3) {
 			frame.getSViews().getBtnSquare().setBackground(btnColor);
+			frame.getSViews().getBtnSquare().setForeground(Color.WHITE);
 		} else if (selection == 4) {
 			frame.getSViews().getBtnRectangle().setBackground(btnColor);
+			frame.getSViews().getBtnRectangle().setForeground(Color.WHITE);
 		} else if (selection == 5) {
 			frame.getSViews().getBtnCircle().setBackground(btnColor);
+			frame.getSViews().getBtnCircle().setForeground(Color.WHITE);
 		}else if(selection==7){
 			frame.getSViews().getBtnBrush().setBackground(btnColor);
+			frame.getSViews().getBtnBrush().setForeground(Color.WHITE);
+		}else if(selection==8){
+			frame.getSViews().getBtnEraser().setBackground(btnColor);
+			frame.getSViews().getBtnEraser().setForeground(Color.WHITE);
 		}
 	}
 
