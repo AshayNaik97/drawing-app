@@ -9,6 +9,7 @@ import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 import app.DrawingApp;
+import connection.DatabaseConnection;
 
 import java.awt.image.BufferedImage;
 import files.AssetLoader;
@@ -26,6 +27,8 @@ import java.io.File;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.Files;
+import files.FileHandler;
+import model.ModelUser;
 
 public class MenuController implements Serializable {
 	/**
@@ -34,7 +37,8 @@ public class MenuController implements Serializable {
 	private DrawingModel model;
 	private DrawingFrame frame;
 	private String currentDir = DrawingApp.currentDir;
-	private File f;
+	private ModelUser usr= DrawingApp.usr;
+	private FileHandler fd = new FileHandler(DatabaseConnection.getInstance().getConnection());
 	private Stack<Command> undoStack=new Stack<Command>();
 	private Stack<Command> redoStack=new Stack<Command>();
 	
@@ -46,6 +50,7 @@ public class MenuController implements Serializable {
 	}
 	
 	public void clearDrawing(ActionEvent e) {
+		saveFiles();
 		int dialogResult = JOptionPane.showConfirmDialog (null, "Are you sure you want to delete this drawing?","Warning",JOptionPane.YES_NO_OPTION);
 		if(dialogResult == JOptionPane.YES_OPTION) {
 			if(frame.getToolsController().isEnterSelecting())
@@ -90,6 +95,8 @@ public class MenuController implements Serializable {
             FileLoader fileLoader = new FileLoader(fileLoad);
 			File f1 = new File(folderPath.toString(), fileName);
             fileLoader.saveFile(f1); // Save the file to project directory
+			fd.deleteDrawing(fileName,usr.getUserID());
+			fd.postDrawing(currentDir+"/"+fileName,fileName,usr.getUserID());
         }
     }
 
@@ -109,6 +116,8 @@ public class MenuController implements Serializable {
 	}
 
 	public void openFiles(ActionEvent e)  {
+		saveFiles();
+
 		System.out.println(currentDir);
 		JFileChooser f = new JFileChooser(new File(currentDir));
         f.setFileSelectionMode(JFileChooser.FILES_ONLY); 

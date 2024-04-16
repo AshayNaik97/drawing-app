@@ -19,9 +19,11 @@ import java.nio.file.Files;
 
 public class DrawingApp {
 	public static String currentDir;
+	public static ModelUser usr;
 
 	public static void main(String file,ModelUser user) {
 		currentDir = "./save/"+user.getUserName()+user.getEmail();
+		usr = user;
 		AssetLoader fileLoad;	
 		DrawingModel model = new DrawingModel();
 		DrawingFrame frame = new DrawingFrame();

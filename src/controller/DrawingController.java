@@ -55,7 +55,6 @@ public class DrawingController implements Serializable {
 	private Long groupNumber=0L;
 
 	public DrawingController(DrawingModel model, DrawingFrame frame) {
-
 		this.model = model;
 		this.frame = frame;
 	}
