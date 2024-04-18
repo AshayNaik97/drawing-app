@@ -4,6 +4,8 @@ import java.awt.event.ActionListener;
 import java.util.List;
 import java.util.Map;
 
+import javax.swing.ImageIcon;
+
 import model.HomeModel;
 import views.HomeView;
 import app.DrawingApp;
@@ -114,8 +116,8 @@ public class HomeController {
         
         
         List<String> folders = model.getFolderList();
-        view.addButton("LogOut",new ButtonListener("LogOut"));
-        view.addButton("New",new ButtonListener("New"));
+        view.addLogoutButton("LogOut",new ButtonListener("LogOut"));
+        view.addButton("New",new ImageIcon("images/icons8-plus-100.png"),new ButtonListener("New"));
 
 
         for (String folder : folders) {

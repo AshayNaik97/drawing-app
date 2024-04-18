@@ -7,10 +7,12 @@ import javax.swing.JButton;
 import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
+import java.awt.Image;
 import javax.swing.border.*;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JRadioButton;
+import java.lang.Object;
 
 import frame.DrawingFrame;
 
@@ -28,6 +30,16 @@ public class SelectionView extends JPanel {
 
 	private JButton btnPlus;
 	private JButton btnMinus;
+
+	private ImageIcon new_file = new ImageIcon(new ImageIcon("images/new-document.png").getImage().getScaledInstance(15, 15, Image.SCALE_SMOOTH));
+	private ImageIcon open_file = new ImageIcon(new ImageIcon("images/icons8-open-file-50.png").getImage().getScaledInstance(15, 15, Image.SCALE_SMOOTH));
+	private ImageIcon save_file = new ImageIcon(new ImageIcon("images/icons8-save-file-100.png").getImage().getScaledInstance(15, 15, Image.SCALE_SMOOTH));
+	private ImageIcon undo = new ImageIcon(new ImageIcon("images/icons8-undo-100.png").getImage().getScaledInstance(15, 15, Image.SCALE_SMOOTH));
+	private ImageIcon redo = new ImageIcon(new ImageIcon("images/icons8-redo-100.png").getImage().getScaledInstance(15, 15, Image.SCALE_SMOOTH));
+	private ImageIcon swatch = new ImageIcon(new ImageIcon("images/icons8-color-swatch-100.png").getImage().getScaledInstance(15, 15, Image.SCALE_SMOOTH));
+	private ImageIcon select = new ImageIcon(new ImageIcon("images/click.png").getImage().getScaledInstance(15, 15, Image.SCALE_SMOOTH));
+	private ImageIcon modify = new ImageIcon(new ImageIcon("images/edit.png").getImage().getScaledInstance(15, 15, Image.SCALE_SMOOTH));
+	private ImageIcon delete = new ImageIcon(new ImageIcon("images/delete.png").getImage().getScaledInstance(15, 15, Image.SCALE_SMOOTH));
 	/**
 	 * Create the panel.
 	 */
@@ -41,7 +53,9 @@ public class SelectionView extends JPanel {
 		// gridBagLayout.setBackground(Color.green);
 		setLayout(gridBagLayout);
 		
-		btnNew = new JButton("new");
+		// btnNew = new JButton("new");
+		btnNew = new JButton();
+		btnNew.setIcon(new_file);
 		// btnNew.setIcon(new ImageIcon(SelectionView.class.getResource("../../resources/images/new.png")));
 		GridBagConstraints gbc_btnNew = new GridBagConstraints();
 		gbc_btnNew.insets = new Insets(0, 0, 0, 5);
@@ -51,7 +65,9 @@ public class SelectionView extends JPanel {
 		// btnNew.setForeground(new Color(250, 250, 250));
 		add(btnNew, gbc_btnNew);
 		
-		btnOpen = new JButton("open");
+		// btnOpen = new JButton("open");
+		btnOpen = new JButton();
+		btnOpen.setIcon(open_file);
 		// btnOpen.setIcon(new ImageIcon(SelectionView.class.getResource("../../resources/images/open.png")));
 		GridBagConstraints gbc_btnOpen = new GridBagConstraints();
 		gbc_btnOpen.insets = new Insets(0, 0, 0, 5);
@@ -61,7 +77,9 @@ public class SelectionView extends JPanel {
 		// btnOpen.setForeground(new Color(250, 250, 250));
 		add(btnOpen, gbc_btnOpen);
 		
-		btnSave = new JButton("save");
+		// btnSave = new JButton("save");
+		btnSave = new JButton();
+		btnSave.setIcon(save_file);
 		// btnSave.setIcon(new ImageIcon(SelectionView.class.getResource("../../resources/images/save.png")));
 		GridBagConstraints gbc_btnSave = new GridBagConstraints();
 		gbc_btnSave.insets = new Insets(0, 0, 0, 5);
@@ -71,7 +89,9 @@ public class SelectionView extends JPanel {
 		// btnSave.setForeground(new Color(250, 250, 250));
 		add(btnSave, gbc_btnSave);
 		
-		btnUndo = new JButton("Undo"); //new ImageIcon(SelectionView.class.getResource("../../resources/images/pok4.png"))
+		// btnUndo = new JButton("Undo"); //new ImageIcon(SelectionView.class.getResource("../../resources/images/pok4.png"))
+		btnUndo = new JButton();
+		btnUndo.setIcon(undo);
 		btnUndo.setEnabled(false);
 		GridBagConstraints gbc_btnUndo = new GridBagConstraints();
 		gbc_btnUndo.fill = GridBagConstraints.BOTH;
@@ -82,7 +102,9 @@ public class SelectionView extends JPanel {
 		// btnUndo.setForeground(new Color(250, 250, 250));
 		add(btnUndo, gbc_btnUndo);
 		
-		btnRedo = new JButton("Redo"); //new ImageIcon(SelectionView.class.getResource("../../resources/images/pok42.png"))
+		// btnRedo = new JButton("Redo"); //new ImageIcon(SelectionView.class.getResource("../../resources/images/pok42.png"))
+		btnRedo = new JButton();
+		btnRedo.setIcon(redo);
 		btnRedo.setEnabled(false);
 		GridBagConstraints gbc_btnRedo = new GridBagConstraints();
 		gbc_btnRedo.fill = GridBagConstraints.BOTH;
@@ -102,6 +124,7 @@ public class SelectionView extends JPanel {
 		add(lblColors, gbc_lblColors);
 		
 		btnOutter = new JButton("");
+		btnOutter.setIcon(swatch);
 		GridBagConstraints gbc_btnOutter = new GridBagConstraints();
 		gbc_btnOutter.fill = GridBagConstraints.BOTH;
 		gbc_btnOutter.insets = new Insets(0, 0, 0, 5);
@@ -112,6 +135,7 @@ public class SelectionView extends JPanel {
 		add(btnOutter, gbc_btnOutter);
 		
 		btnInner = new JButton("");
+		btnInner.setIcon(swatch);
 		GridBagConstraints gbc_btnInner = new GridBagConstraints();
 		gbc_btnInner.insets = new Insets(0, 0, 0, 5);
 		gbc_btnInner.fill = GridBagConstraints.BOTH;
@@ -152,7 +176,9 @@ public class SelectionView extends JPanel {
 		// btnMinus.setForeground(new Color(250, 250, 250));
 		add(btnMinus, gbc_btnMinus);
 		
-		btnSelect = new JButton("Select");
+		// btnSelect = new JButton("Select");
+		btnSelect = new JButton();
+		btnSelect.setIcon(select);
 		GridBagConstraints gbc_btnSelect = new GridBagConstraints();
 		gbc_btnSelect.insets = new Insets(0, 0, 0, 5);
 		gbc_btnSelect.gridx = 12;
@@ -162,7 +188,9 @@ public class SelectionView extends JPanel {
 		// btnSelect.setForeground(new Color(250, 250, 250));
 		add(btnSelect, gbc_btnSelect);
 		
-		btnModify = new JButton("Modify");
+		// btnModify = new JButton("Modify");
+		btnModify = new JButton();
+		btnModify.setIcon(modify);
 		btnModify.setEnabled(false);
 		GridBagConstraints gbc_btnModify = new GridBagConstraints();
 		gbc_btnModify.insets = new Insets(0, 0, 0, 5);
@@ -173,7 +201,9 @@ public class SelectionView extends JPanel {
 		// btnModify.setForeground(new Color(250, 250, 250));
 		add(btnModify, gbc_btnModify);
 		
-		btnDelete = new JButton("Delete");
+		// btnDelete = new JButton("Delete");
+		btnDelete = new JButton();
+		btnDelete.setIcon(delete);
 		btnDelete.setEnabled(false);
 		GridBagConstraints gbc_btnDelete = new GridBagConstraints();
 		gbc_btnDelete.gridx = 14;
