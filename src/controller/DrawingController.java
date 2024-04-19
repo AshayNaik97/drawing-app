@@ -179,6 +179,7 @@ public class DrawingController implements Serializable {
 				}
 				System.out.println(updatedStart.getX() + " " +updatedStart.getY() + " "+ distance);
 				Square s = new Square(updatedStart, distance, frame.getToolsController().fillCommand(),outer, inner);
+				s.setStrokeSize(frame.getBrush().getStrokeSize());
 				if (s.surfaceArea() > 3) {
 					if (prevSquare != null && prevStop != curEndpPoint) {
 						RemoveSquare cmd = new RemoveSquare(model, prevSquare);
@@ -208,6 +209,7 @@ public class DrawingController implements Serializable {
 				}
 				Rectangle r = new Rectangle(updatedStart, Math.abs(start.getY() - curEndpPoint.getY()),
 						Math.abs(start.getX() - curEndpPoint.getX()), frame.getToolsController().fillCommand(),outer, inner);
+				r.setStrokeSize(frame.getBrush().getStrokeSize());
 				if (r.surfaceArea() > 3) {
 					if(prevRectangle !=null && curEndpPoint!=prevStop){
 						RemoveRectangle cmd = new RemoveRectangle(model , prevRectangle);
@@ -224,6 +226,7 @@ public class DrawingController implements Serializable {
 			else if (frame.getToolsController().getSelection() == 5) {
 				Circle c = new Circle(start, (int) start.distance(new Point(arg0.getX(), arg0.getY(), outer)),frame.getToolsController().fillCommand(), outer,
 						inner);
+				c.setStrokeSize(frame.getBrush().getStrokeSize());
 				// c.addObserver(observer);
 				if (c.getRadius() > 3) {
 					if (prevCircle != null && curEndpPoint != prevStop) {
@@ -313,6 +316,7 @@ public class DrawingController implements Serializable {
 				int distance = Math.min(Math.abs(start.getX() - end.getX()), Math.abs(start.getY() - end.getY()));
 				
 				Square s = new Square(updatedStart, distance, frame.getToolsController().fillCommand(), outer, inner,groupNumber);
+				s.setStrokeSize(frame.getBrush().getStrokeSize());
 				// s.addObserver(observer);
 				if (s.surfaceArea() > 3) {
 					RemoveSquare cmd1 = new RemoveSquare(model, prevSquare);
@@ -333,6 +337,7 @@ public class DrawingController implements Serializable {
 				
 				Rectangle r = new Rectangle(updatedStart, Math.abs(start.getY() - end.getY()),
 						Math.abs(start.getX() - end.getX()),frame.getToolsController().fillCommand(), outer, inner,groupNumber);
+				r.setStrokeSize(frame.getBrush().getStrokeSize());
 				// r.addObserver(observer);
 				if (r.surfaceArea() > 3) {
 					RemoveRectangle cmd1 = new RemoveRectangle(model, prevRectangle);
@@ -350,6 +355,7 @@ public class DrawingController implements Serializable {
 				
 				Circle c = new Circle(start, (int) start.distance(new Point(arg0.getX(), arg0.getY(), outer)),frame.getToolsController().fillCommand(), outer,
 						inner,groupNumber);
+				c.setStrokeSize(frame.getBrush().getStrokeSize());
 
 				if (c.getRadius() > 3) {
 					RemoveCircle cmd1 = new RemoveCircle(model, prevCircle);

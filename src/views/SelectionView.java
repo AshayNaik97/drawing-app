@@ -13,6 +13,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JRadioButton;
 import java.lang.Object;
+import shapes.Brush;
 
 import frame.DrawingFrame;
 
@@ -27,6 +28,7 @@ public class SelectionView extends JPanel {
 	private JButton btnSave;
 
 	private JRadioButton btnFill;
+	private JLabel brushStrokeSize;
 
 	private JButton btnPlus;
 	private JButton btnMinus;
@@ -40,6 +42,8 @@ public class SelectionView extends JPanel {
 	private ImageIcon select = new ImageIcon(new ImageIcon("images/click.png").getImage().getScaledInstance(15, 15, Image.SCALE_SMOOTH));
 	private ImageIcon modify = new ImageIcon(new ImageIcon("images/edit.png").getImage().getScaledInstance(15, 15, Image.SCALE_SMOOTH));
 	private ImageIcon delete = new ImageIcon(new ImageIcon("images/delete.png").getImage().getScaledInstance(15, 15, Image.SCALE_SMOOTH));
+
+	Brush brush;
 	/**
 	 * Create the panel.
 	 */
@@ -164,6 +168,15 @@ public class SelectionView extends JPanel {
 		btnPlus.setBackground(new Color(22, 117, 67));
 		// btnPlus.setForeground(new Color(250, 250, 250));
 		add(btnPlus, gbc_btnPlus);
+
+		brushStrokeSize = new JLabel("1");
+		GridBagConstraints gbc_brushStrokeSize = new GridBagConstraints();
+		gbc_brushStrokeSize.anchor = GridBagConstraints.EAST;
+		// gbc_brushStrokeSize.insets = new Insets(0, 0, 0, 0);
+		gbc_brushStrokeSize.gridx = 10;
+		gbc_brushStrokeSize.gridy = 0;
+		// gbc_brushStrokeSize.weightx = 1;
+		add(brushStrokeSize, gbc_brushStrokeSize);
 
 		btnMinus = new JButton("-");
 		btnMinus.setEnabled(true);
@@ -297,6 +310,10 @@ public class SelectionView extends JPanel {
 	}
 	public void setBtnMinus(JButton btnMinus) {
 		this.btnMinus = btnMinus;
+	}
+
+	public JLabel getBrushStrokeSize(){
+		return brushStrokeSize;
 	}
 
 }

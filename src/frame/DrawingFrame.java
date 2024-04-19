@@ -12,12 +12,13 @@ import javax.swing.JFrame;
 import controller.DrawingController;
 import controller.MenuController;
 import controller.ToolsController;
+import shapes.Brush;
 import views.DrawingView;
 import views.LogView;
 import views.PositionView;
 import views.SelectionView;
 import views.ShapesView;
-import brush.Brush;
+
 import javax.swing.*;
 import java.awt.event.*;
 import java.awt.Color;
@@ -180,19 +181,20 @@ public class DrawingFrame extends JFrame {
 		});
 
 		
-		selViews.getBtnPlus().addActionListener(new ActionListener() {
+		// selViews.getBtnPlus().addActionListener(new ActionListener() {
 			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				brush.setStrokeSize(brush.getStrokeSize()+1);
-			}
-		});
+		// 	@Override
+		// 	public void actionPerformed(ActionEvent e) {
+		// 		brush.setStrokeSize(brush.getStrokeSize()+1);
+		// 	}
+		// });
 
 		selViews.getBtnPlus().addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				brush.setStrokeSize(Math.min(brush.getStrokeSize()+1, 20));
+				selViews.getBrushStrokeSize().setText(String.format("%d", brush.getStrokeSize()+1));
 			}
 		});
 
@@ -201,6 +203,7 @@ public class DrawingFrame extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				brush.setStrokeSize(Math.max(brush.getStrokeSize()-1, 0));
+				selViews.getBrushStrokeSize().setText(String.format("%d", brush.getStrokeSize()+1));
 			}
 		});
 

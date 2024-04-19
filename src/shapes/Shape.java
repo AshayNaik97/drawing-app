@@ -14,6 +14,7 @@ public abstract class Shape extends Observable implements Comparable<Shape>, Ser
 	private Color color=Color.BLACK;
 	private boolean selected=false;
 	public Long groupNum=0L;
+	public int strokeSize=0;
 	// private SelectionView selView = new SelectionView();
 	// protected boolean fill = selView.getBtnfill().isSelected();
 	
@@ -44,6 +45,14 @@ public abstract class Shape extends Observable implements Comparable<Shape>, Ser
 		this.selected = selected;
 		setChanged();
 		notifyObservers();
+	}
+
+	public int getStrokeSize() {
+		return strokeSize;
+	}
+
+	public void setStrokeSize(int strokeSize) {
+		this.strokeSize = strokeSize;
 	}
 	
 	

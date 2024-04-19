@@ -2,6 +2,8 @@ package shapes.square;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.BasicStroke;
 
 import shapes.Movable;
 import shapes.Shape;
@@ -41,6 +43,13 @@ public class Square extends SurfaceShape implements Movable{
 		setfill(fill);
 		setInnerColor(inner);
 	}
+
+	public Square(Point upperLeft, int sideLength,boolean fill, int strokeSize, Color outer, Color inner) {
+		this(upperLeft, sideLength, outer);
+		setfill(fill);
+		setInnerColor(inner);
+		this.strokeSize=strokeSize;
+	}
 	
 	public Line diagonal() {
 		return new Line(upperLeft, new Point(upperLeft.getX() + sideLength, upperLeft.getY() + sideLength));
@@ -69,8 +78,8 @@ public class Square extends SurfaceShape implements Movable{
 
 	@Override
 	public String toString() {
-		return String.format("Square(UpperX=%d,UpperY=%d,a=%d,f=%b,outercolor=[%d-%d-%d],innercolor=[%d-%d-%d],selected=%b)",
-				upperLeft.getX(), upperLeft.getY(), sideLength,fill, getColor().getRed(), getColor().getGreen(),
+		return String.format("Square(UpperX=%d,UpperY=%d,a=%d,f=%b,ss=%d,outercolor=[%d-%d-%d],innercolor=[%d-%d-%d],selected=%b)",
+				upperLeft.getX(), upperLeft.getY(), sideLength, fill, strokeSize, getColor().getRed(), getColor().getGreen(),
 				getColor().getBlue(), getInnerColor().getRed(), getInnerColor().getGreen(), getInnerColor().getBlue(),isSelected());
 	}
 
@@ -92,8 +101,11 @@ public class Square extends SurfaceShape implements Movable{
 
 	@Override
 	public void draw(Graphics g) {
+		Graphics2D g2 = (Graphics2D) g;
+		g2.setColor(getColor());
+		g2.setStroke(new BasicStroke(strokeSize));
 		g.setColor(getColor());
-		g.drawRect(upperLeft.getX(), upperLeft.getY(), sideLength, sideLength);
+		g2.drawRect(upperLeft.getX(), upperLeft.getY(), sideLength, sideLength);
 		if(fill){
 			fill(g);
 		}
