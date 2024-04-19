@@ -371,12 +371,13 @@ public class DrawingController implements Serializable {
 			start = null;
 			frame.getView().repaint();
 			frame.getToolsController().updateButtons();
+			frame.getMenuController().setSave();
 		}
 	}
 
 
 	public void drawBrush(MouseEvent arg0) {
-		System.out.println("controller/DrawingController/DrawBrush");
+		// System.out.println("controller/DrawingController/DrawBrush");
 		if (draw) {
 			stop = new Point(arg0.getX(), arg0.getY());
 			ShapeObserver observer = new ShapeObserver(model, frame);
