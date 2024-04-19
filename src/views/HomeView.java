@@ -25,6 +25,16 @@ public class HomeView extends JPanel {
         this.user = user;
         initialize();
     }
+    @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        Graphics2D g2d = (Graphics2D) g;
+        g2d.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
+        int w = getWidth(), h = getHeight();
+        GradientPaint gp =  new GradientPaint(0, 0, new Color(35, 166, 97), 0, getHeight(), new Color(22, 116, 66));
+        g2d.setPaint(gp);
+        g2d.fillRect(0, 0, w, h);
+    }
 
     public void initialize() {
         frame = new JFrame("Draw");
@@ -33,7 +43,9 @@ public class HomeView extends JPanel {
         frame.setVisible(true);
         frame.setResizable(true);
         panel = new JPanel(new GridLayout(0, 1));
-        panel.setBackground(new Color(22, 117, 67));
+        // GradientPaint gra = new GradientPaint(0, 0, new Color(35, 166, 97), 0, getHeight(), new Color(22, 116, 66));
+        
+        // panel.setBackground(new Color(22, 117, 67));
         frame.getContentPane().add(panel);
         // GridBagLayout gridBagLayout = new GridBagLayout();
         // gridBagLayout.columnWidths = new int[]{0, 0, 0, 31, 45, 46, 67, 63, 61, 62,
