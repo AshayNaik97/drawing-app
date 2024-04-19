@@ -52,7 +52,7 @@ public class MenuController implements Serializable {
 		this.saveNeeded = getUndoStack().size();
 	}
 	public boolean isSaveNeeded(){
-		if(saveNeeded !=getUndoStack().size()){
+		if(saveNeeded != getUndoStack().size()){
 			return true;
 		}
 		return false;
@@ -65,14 +65,15 @@ public class MenuController implements Serializable {
 		int dialogResult = JOptionPane.showConfirmDialog (null, "Are you sure you want to delete this drawing?","Warning",JOptionPane.YES_NO_OPTION);
 		if(dialogResult == JOptionPane.YES_OPTION) {
 			if(frame.getToolsController().isEnterSelecting())
-				frame.getToolsController().selectShape(null);
+			frame.getToolsController().selectShape(null);
 			model.getAll().clear();
 			getUndoStack().clear();
 			getRedoStack().clear();
 			frame.getLogView().getLogPane().setText("");
 			frame.getToolsController().updateButtons();
 			frame.getView().repaint();
-			}
+		}
+		setSave();
 	}
 
 	public void saveFiles() {
@@ -131,7 +132,6 @@ public class MenuController implements Serializable {
 		if(isSaveNeeded()){
 			saveFiles();
 		}
-
 		System.out.println(currentDir);
 		JFileChooser f = new JFileChooser(new File(currentDir));
         f.setFileSelectionMode(JFileChooser.FILES_ONLY); 
@@ -152,6 +152,7 @@ public class MenuController implements Serializable {
         	frame.getView().repaint();
         
         }
+		setSave();
 	}
 	
 	public Stack<Command> getUndoStack(){
