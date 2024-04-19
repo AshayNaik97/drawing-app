@@ -65,7 +65,7 @@ public class Message extends javax.swing.JPanel {
     protected void paintComponent(Graphics grphcs) {
         Graphics2D g2 = (Graphics2D) grphcs;
         if (messageType == MessageType.SUCCESS) {
-            g2.setColor(new Color(15, 174, 37));
+            g2.setColor(new Color(245, 245, 245));
         } else {
             g2.setColor(new Color(240, 52, 53));
         }

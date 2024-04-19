@@ -52,7 +52,9 @@ public class DrawingFrame extends JFrame {
 		addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
-                menuController.saveFiles();
+				if(menuController.isSaveNeeded()){
+					menuController.saveFiles();
+				}
 				dispose();
             }
         });

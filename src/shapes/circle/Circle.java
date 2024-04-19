@@ -43,6 +43,7 @@ public class Circle extends SurfaceShape implements Movable  {
 		this(center, radius, outerColor);
 		this.groupNum = groupNumber;
 		setInnerColor(innerColor);
+
 		setFill(fill);
 	}
 

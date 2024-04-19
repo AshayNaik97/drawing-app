@@ -54,6 +54,7 @@ public class DrawingApp {
 			FileLoader fileLoader=new FileLoader(fileLoad);
         	fileLoader.loadFile(f);
         	frame.getView().repaint();
+			mController.setSave();
 		}
 	}
 
