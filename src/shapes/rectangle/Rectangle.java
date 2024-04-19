@@ -2,6 +2,8 @@ package shapes.rectangle;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.BasicStroke;
 
 import shapes.line.Line;
 import shapes.point.Point;
@@ -37,6 +39,13 @@ public class Rectangle extends Square{
 		setInnerColor(innerColor);
 	}
 
+	public Rectangle(Point upperLeft, int height, int width, boolean fill, int strokeSize, Color outerColor, Color innerColor) {
+		this(upperLeft, height, width, outerColor);
+		setFill(fill);
+		setInnerColor(innerColor);
+		this.strokeSize=strokeSize;
+	}
+
 	@Override
 	public Line diagonal() {
 		return new Line(upperLeft, new Point(upperLeft.getX() + width, upperLeft.getY() + sideLength));
@@ -70,8 +79,8 @@ public class Rectangle extends Square{
 	@Override
 	public String toString() {
 		return String.format(
-				"Rectangle(UpperX=%d,UpperY=%d,height=%d,width=%d,f=%b,outercolor=[%d-%d-%d],innercolor=[%d-%d-%d],selected=%b)",
-				upperLeft.getX(), upperLeft.getY(), sideLength, width,fill, getColor().getRed(), getColor().getGreen(),
+				"Rectangle(UpperX=%d,UpperY=%d,height=%d,width=%d,f=%b,ss=%d,outercolor=[%d-%d-%d],innercolor=[%d-%d-%d],selected=%b)",
+				upperLeft.getX(), upperLeft.getY(), sideLength, width,fill, strokeSize, getColor().getRed(), getColor().getGreen(),
 				getColor().getBlue(), getInnerColor().getRed(), getInnerColor().getGreen(), getInnerColor().getBlue(),isSelected());
 	}
 
@@ -98,7 +107,9 @@ public class Rectangle extends Square{
 
 	@Override
 	public void draw(Graphics g) {
-		g.setColor(getColor());
+		Graphics2D g2 = (Graphics2D) g;
+		g2.setColor(getColor());
+		g2.setStroke(new BasicStroke(strokeSize));
 		g.drawRect(upperLeft.getX(), upperLeft.getY(), width, sideLength);
 		if(fill==true){
 			fill(g);

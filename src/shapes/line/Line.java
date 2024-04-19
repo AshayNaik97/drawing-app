@@ -15,7 +15,6 @@ public class Line extends Shape{
 	 */
 	private Point pointStart;
 	private Point pointEnd;
-	private int strokeSize=0;
 
 	public Line() {
 
@@ -42,14 +41,20 @@ public class Line extends Shape{
 		setColor(color);
 	}
 
+	public Line(Point pointStart, Point pointEnd, int strokeSize, Color color) {
+		this(pointStart,pointEnd);
+		setColor(color);
+		this.strokeSize=strokeSize;
+	}
+
 	public double length() {
 		return pointStart.distance(pointEnd);
 	}
 
 	@Override
 	public String toString() {
-		return String.format("Line(startX=%d,startY=%d,endX=%d,endY=%d,color=[%d-%d-%d],selected=%b)", pointStart.getX(),
-				pointStart.getY(), pointEnd.getX(), pointEnd.getY(), getColor().getRed(), getColor().getGreen(),
+		return String.format("Line(startX=%d,startY=%d,endX=%d,endY=%d,ss=%d,color=[%d-%d-%d],selected=%b)", pointStart.getX(),
+				pointStart.getY(), pointEnd.getX(), pointEnd.getY(), strokeSize, getColor().getRed(), getColor().getGreen(),
 				getColor().getBlue(),isSelected());
 	}
 
@@ -144,14 +149,6 @@ public class Line extends Shape{
 
 	public void setPointEnd(Point pointEnd) {
 		this.pointEnd = pointEnd;
-	}
-
-	public int getStrokeSize() {
-		return strokeSize;
-	}
-
-	public void setStrokeSize(int strokeSize) {
-		this.strokeSize = strokeSize;
 	}
 
 	public Line clone() {

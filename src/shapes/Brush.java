@@ -1,4 +1,4 @@
-package brush;
+package shapes;
 
 import java.awt.Color;
 

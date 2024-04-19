@@ -2,8 +2,8 @@ package shapes.circle;
 
 import java.awt.Color;
 import java.awt.Graphics;
-// import java.awt.Graphics2D;
-// import java.awt.BasicStroke;
+import java.awt.Graphics2D;
+import java.awt.BasicStroke;
 
 import shapes.Movable;
 import shapes.Shape;
@@ -33,17 +33,22 @@ public class Circle extends SurfaceShape implements Movable  {
 		setColor(color);
 	}
 
-	public Circle(Point center, int radius, boolean fill ,Color outerColor, Color innerColor) {
+	public Circle(Point center, int radius, boolean fill, Color outerColor, Color innerColor) {
 		this(center, radius, outerColor);
 		setInnerColor(innerColor);
 		setFill(fill);
 	}
 
-	public Circle(Point center, int radius, boolean fill ,Color outerColor, Color innerColor, Long groupNumber) {
+	public Circle(Point center, int radius, boolean fill, Color outerColor, Color innerColor, Long groupNumber) {
 		this(center, radius, outerColor);
 		this.groupNum = groupNumber;
 		setInnerColor(innerColor);
 		setFill(fill);
+	}
+
+	public Circle(Point center, int radius, boolean fill, int strokeSize, Color outerColor, Color innerColor) {
+		this(center,radius,fill,outerColor,innerColor);
+		this.strokeSize=strokeSize;
 	}
 
 	public double surfaceArea() {
@@ -65,8 +70,8 @@ public class Circle extends SurfaceShape implements Movable  {
 
 	@Override
 	public String toString() {
-		return String.format("Circle(X=%d,Y=%d,r=%d,f=%b,outercolor=[%d-%d-%d],innercolor=[%d-%d-%d],selected=%b)", center.getX(),
-				center.getY(), radius, fill,getColor().getRed(), getColor().getGreen(), getColor().getBlue(),
+		return String.format("Circle(X=%d,Y=%d,r=%d,f=%b,ss=%d,outercolor=[%d-%d-%d],innercolor=[%d-%d-%d],selected=%b)", center.getX(),
+				center.getY(), radius, fill, strokeSize, getColor().getRed(), getColor().getGreen(), getColor().getBlue(),
 				getInnerColor().getRed(), getInnerColor().getGreen(), getInnerColor().getBlue(),isSelected());
 	}
 
@@ -99,9 +104,9 @@ public class Circle extends SurfaceShape implements Movable  {
 
 	@Override
 	public void draw(Graphics g) {
-		// Graphics2D g2 = (Graphics2D) g;
+		Graphics2D g2 = (Graphics2D) g;
 		g.setColor(getColor());
-		// g2.setStroke(new BasicStroke(strokeSize));
+		g2.setStroke(new BasicStroke(strokeSize));
 		g.drawOval(center.getX() - radius, center.getY() - radius, 2 * radius, radius * 2);
 		// System.out.println(super.fill);
 		if(fill==true){
