@@ -2,7 +2,8 @@ package model;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import shapes.Shape;
+
+import model.shapes.Shape;
 
 public class DrawingModel implements Serializable{
 	/**
