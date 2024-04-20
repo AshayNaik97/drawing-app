@@ -1,37 +1,33 @@
 package controller;
 
-import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.event.MouseEvent;
 import java.io.Serializable;
 
-import javax.lang.model.type.NullType;
 
-import frame.DrawingFrame;
 import model.DrawingModel;
-import shapes.Command;
-import shapes.Shape;
-import shapes.ShapeObserver;
-import shapes.circle.AddCircle;
-import shapes.circle.Circle;
-import shapes.circle.RemoveCircle;
-import shapes.circle.UpdateCircle;
-import shapes.line.AddLine;
-import shapes.line.Line;
-import shapes.line.RemoveLine;
-import shapes.line.UpdateLine;
-import shapes.point.AddPoint;
-import shapes.point.Point;
-import shapes.point.UpdatePoint;
-import shapes.rectangle.AddRectangle;
-import shapes.rectangle.Rectangle;
-import shapes.rectangle.UpdateRectangle;
-import shapes.square.AddSquare;
-import shapes.square.Square;
-import shapes.square.UpdateSquare;
-import shapes.line.RemoveLine;
-import shapes.square.RemoveSquare;
-import shapes.rectangle.RemoveRectangle;
+import model.frame.DrawingFrame;
+import model.shapes.Command;
+import model.shapes.Shape;
+import model.shapes.circle.AddCircle;
+import model.shapes.circle.Circle;
+import model.shapes.circle.RemoveCircle;
+import model.shapes.circle.UpdateCircle;
+import model.shapes.line.AddLine;
+import model.shapes.line.Line;
+import model.shapes.line.RemoveLine;
+import model.shapes.line.UpdateLine;
+import model.shapes.point.AddPoint;
+import model.shapes.point.Point;
+import model.shapes.point.UpdatePoint;
+import model.shapes.rectangle.AddRectangle;
+import model.shapes.rectangle.Rectangle;
+import model.shapes.rectangle.RemoveRectangle;
+import model.shapes.rectangle.UpdateRectangle;
+import model.shapes.square.AddSquare;
+import model.shapes.square.RemoveSquare;
+import model.shapes.square.Square;
+import model.shapes.square.UpdateSquare;
 
 public class DrawingController implements Serializable {
 	/**
@@ -288,7 +284,6 @@ public class DrawingController implements Serializable {
 		stop = null;
 		drag = null;
 		startSquare = null;
-		ShapeObserver observer = new ShapeObserver(model, frame);
 		Color inner = frame.getToolsController().getInner();
 		Color outer = frame.getToolsController().getOuter();
 		if (start != null) {
@@ -297,7 +292,7 @@ public class DrawingController implements Serializable {
 				Line l = new Line(start, new Point(arg0.getX(), arg0.getY(), outer), groupNumber, outer);
 
 				l.setStrokeSize(frame.getBrush().getStrokeSize());
-				l.addObserver(observer);
+				// l.addObserver(observer);
 			
 				if (l.length() > 3) {
 					RemoveLine cmd1 = new RemoveLine(model, prevLine);
@@ -377,7 +372,7 @@ public class DrawingController implements Serializable {
 			start = null;
 			frame.getView().repaint();
 			frame.getToolsController().updateButtons();
-			frame.getMenuController().setSave();
+			// frame.getMenuController().setSave();
 		}
 	}
 
@@ -386,7 +381,7 @@ public class DrawingController implements Serializable {
 		// System.out.println("controller/DrawingController/DrawBrush");
 		if (draw) {
 			stop = new Point(arg0.getX(), arg0.getY());
-			ShapeObserver observer = new ShapeObserver(model, frame);
+			// ShapeObserver observer = new ShapeObserver(model, frame);
 			// Color inner = frame.getToolsController().getInner();
 			Color outer = frame.getToolsController().getOuter();
 			if(frame.getToolsController().getSelection()==8) outer = Color.WHITE;
@@ -397,7 +392,7 @@ public class DrawingController implements Serializable {
 					
 					Line l = new Line(start, new Point(arg0.getX(), arg0.getY(), outer), groupNumber, outer);
 					l.setStrokeSize(frame.getBrush().getStrokeSize());
-					l.addObserver(observer);
+					// l.addObserver(observer);
 					if (l.length() > 0) {
 						RemoveLine cmd1 = new RemoveLine(model, prevLine);
 						cmd1.groupNum = groupNumber;

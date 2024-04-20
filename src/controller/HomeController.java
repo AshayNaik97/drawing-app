@@ -7,11 +7,14 @@ import java.util.Map;
 import javax.swing.ImageIcon;
 
 import model.HomeModel;
-import views.HomeView;
-import app.DrawingApp;
-import app.Main;
 import connection.DatabaseConnection;
+import controller.files.DBFileHandler;
+import controller.files.FilesUtils;
+import main.DrawingMain;
+import main.Main;
 import model.ModelUser;
+import view.HomeView;
+
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.sql.Connection;
@@ -20,29 +23,32 @@ import java.nio.file.Files;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import files.FileHandler;
-import files.FilesUtils;
-import files.FileHandler.*;
+
+
+
 public class HomeController {
     private HomeModel model;
     private HomeView view;
     private ModelUser user;
     private Connection con;
-    private FileHandler FileHandler;
+    private DBFileHandler FileHandler;
+    private DrawingMain drawingmain;
 
-    public HomeController(HomeModel model, ModelUser user) {
+    public HomeController(DrawingMain drawingmain,HomeModel model,HomeView view, ModelUser user) {
         this.model = model;
         this.user = user;
-        this.view = new HomeView(user);
+        this.view = view;
+        this.drawingmain = drawingmain;
         this.con = DatabaseConnection.getInstance().getConnection();
-        FileHandler = new FileHandler(this.con);
-        init();
+        FileHandler = new DBFileHandler(this.con);
+        
     }
 
     public void init() {
         
         // create dir if not exist
-        Path path = Paths.get("./save/"+user.getUserName()+user.getEmail());
+        String curDir = "./save/"+user.getUserName()+user.getEmail();
+        Path path = Paths.get(curDir);
         boolean newDirCreated = false;
         if (!Files.exists(path)) { // Check if directory already exists
             try {
@@ -61,7 +67,7 @@ public class HomeController {
              //download and extract eveyfile from db
             for(Map.Entry<String, Date> drawing : drawings){
                 try{
-                    String drawingPathString = "./save/"+user.getUserName()+user.getEmail()+"/"+drawing.getKey();
+                    String drawingPathString = curDir+"/"+drawing.getKey();
                     Path drawingPath =Paths.get(drawingPathString);
                     Files.createDirectories(drawingPath);
                     FilesUtils.unzip(FileHandler.getDrawing(user.getUserID(), drawing.getKey()),drawingPathString);
@@ -74,9 +80,9 @@ public class HomeController {
         }
         else{
             //check all files and download and extract needed
-            // FilesUtils.isFolderNewer("./save/"+user.getUserName()+user.getEmail()+filename,)
+            // FilesUtils.isFolderNewer(curDir+filename,)
             List<String> folderList = new ArrayList<>();
-            File saveFolder = new File("./save/"+user.getUserName()+user.getEmail()); 
+            File saveFolder = new File(curDir); 
             if (saveFolder.exists() && saveFolder.isDirectory()) {
                 for (File file : saveFolder.listFiles()) {
                     if (file.isDirectory()) {
@@ -84,8 +90,21 @@ public class HomeController {
                     }
                 }
             }
+            for (String drawing : folderList) {
+                boolean found = false;
+                for (Map.Entry<String, Date> entry : drawings) {
+                    if (entry.getKey().equals(drawing)) {
+                        found = true;
+                        break;
+                    }
+                }
+                if (!found) {
+                    FileHandler.postDrawing(curDir+"/"+drawing, drawing, user.getUserID());
+                }
+            }
+
             for(Map.Entry<String, Date> drawing : drawings){
-                String drawingPathString = "./save/"+user.getUserName()+user.getEmail()+"/"+drawing.getKey();
+                String drawingPathString = curDir+"/"+drawing.getKey();
                 if(!folderList.contains(drawing.getKey())){
                     System.out.println("file dont contain");
                     try{
@@ -138,9 +157,8 @@ public class HomeController {
         @Override
         public void actionPerformed(ActionEvent e) {
             // System.out.println("Button clicked " + Name);
-            DrawingApp drawingapp = new DrawingApp();
             if(Name == "New"){
-                drawingapp.main(null,user);
+                drawingmain.main(null,user);
             }
             else if(Name == "LogOut"){
                 System.out.println("Logout");
@@ -148,7 +166,7 @@ public class HomeController {
 
             }
             else{
-                drawingapp.main(Name,user);
+                drawingmain.main(Name,user);
             }
             // this.dispose();
             view.exit();

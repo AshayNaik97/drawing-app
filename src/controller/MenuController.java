@@ -8,17 +8,18 @@ import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
-import app.DrawingApp;
 import connection.DatabaseConnection;
+import controller.files.AssetLoader;
+import controller.files.DBFileHandler;
+import controller.files.FileLoader;
+import controller.files.LogFileLoader;
+import controller.files.SerializableFileLoader;
+import main.DrawingMain;
 
 import java.awt.image.BufferedImage;
-import files.AssetLoader;
-import files.FileLoader;
-import files.LogFileLoader;
-import files.SerializableFileLoader;
-import frame.DrawingFrame;
+
 import model.DrawingModel;
-import shapes.Command;
+
 import javax.swing.JPanel;
 import java.awt.Graphics2D;
 import java.io.IOException;
@@ -27,15 +28,17 @@ import java.io.File;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.Files;
-import files.FileHandler;
+
 import model.ModelUser;
+import model.frame.DrawingFrame;
+import model.shapes.Command;
 
 public class MenuController implements Serializable {
 	private DrawingModel model;
 	private DrawingFrame frame;
-	private String currentDir = DrawingApp.currentDir;
-	private ModelUser usr= DrawingApp.usr;
-	private FileHandler fd = new FileHandler(DatabaseConnection.getInstance().getConnection());
+	private String currentDir = DrawingMain.currentDir;
+	private ModelUser usr= DrawingMain.usr;
+	private DBFileHandler fd = new DBFileHandler(DatabaseConnection.getInstance().getConnection());
 	private Stack<Command> undoStack=new Stack<Command>();
 	private Stack<Command> redoStack=new Stack<Command>();
 	
@@ -45,10 +48,10 @@ public class MenuController implements Serializable {
 	public MenuController(DrawingModel model, DrawingFrame frame) {
 		this.model = model;
 		this.frame = frame;
-		System.out.println("assign");
-		this.saveNeeded = model.getAll().size();
+		this.saveNeeded = getUndoStack().size();
 	}
 	public void setSave(){
+		System.out.println("save set");
 		this.saveNeeded = getUndoStack().size();
 	}
 	public boolean isSaveNeeded(){

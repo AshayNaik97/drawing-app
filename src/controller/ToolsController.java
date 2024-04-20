@@ -8,39 +8,36 @@ import java.util.logging.Logger;
 import javax.swing.JColorChooser;
 import javax.swing.JOptionPane;
 
-import dialogs.DialogCircle;
-import dialogs.DialogLine;
-import dialogs.DialogPoint;
-import dialogs.DialogRectangle;
-import dialogs.DialogSquare;
-import frame.DrawingFrame;
+import controller.position.BringToBackCommand;
+import controller.position.BringToFrontCommand;
+import controller.position.ToBackCommand;
+import controller.position.ToFrontCommand;
 import model.DrawingModel;
-import position.BringToBackCommand;
-import position.BringToFrontCommand;
-import position.ToBackCommand;
-import position.ToFrontCommand;
-import shapes.Command;
-import shapes.Shape;
-import shapes.circle.Circle;
-import shapes.circle.RemoveCircle;
-import shapes.circle.UpdateCircle;
-import shapes.line.Line;
-import shapes.line.RemoveLine;
-import shapes.line.UpdateLine;
-import shapes.point.Point;
-import shapes.point.RemovePoint;
-import shapes.point.UpdatePoint;
-import shapes.rectangle.Rectangle;
-import shapes.rectangle.RemoveRectangle;
-import shapes.rectangle.UpdateRectangle;
-import shapes.square.RemoveSquare;
-import shapes.square.Square;
-import shapes.square.UpdateSquare;
+import model.frame.DrawingFrame;
+import model.shapes.Command;
+import model.shapes.Shape;
+import model.shapes.circle.Circle;
+import model.shapes.circle.RemoveCircle;
+import model.shapes.circle.UpdateCircle;
+import model.shapes.line.Line;
+import model.shapes.line.RemoveLine;
+import model.shapes.line.UpdateLine;
+import model.shapes.point.Point;
+import model.shapes.point.RemovePoint;
+import model.shapes.point.UpdatePoint;
+import model.shapes.rectangle.Rectangle;
+import model.shapes.rectangle.RemoveRectangle;
+import model.shapes.rectangle.UpdateRectangle;
+import model.shapes.square.RemoveSquare;
+import model.shapes.square.Square;
+import model.shapes.square.UpdateSquare;
+import view.dialogsView.DialogCircle;
+import view.dialogsView.DialogLine;
+import view.dialogsView.DialogPoint;
+import view.dialogsView.DialogRectangle;
+import view.dialogsView.DialogSquare;
 
 public class ToolsController implements Serializable {
-	/**
-	 * 
-	 */
 	private DrawingModel model;
 	private DrawingFrame frame;
 	private int selection = 1;
