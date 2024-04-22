@@ -2,7 +2,7 @@
 Use of MVC archietecture.  
 and numerous design principles like creator , information expert , srp , ocp etc.    
 
-TO RUN THIS APPLICATION   
+# TO RUN THIS APPLICATION   
 1)git clone the repo or download the zip file.  
 2)set up classpath by adding all the dependencies given in the dependency folder.  
 3)set up the mysql server using the draw.sql file (in dependencies) and DatabaseConnection.java file.    
