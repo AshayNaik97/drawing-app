@@ -5,8 +5,8 @@ and numerous design principles like creator , information expert , srp , ocp etc
 TO RUN THIS APPLICATION   
 1)git clone the repo or download the zip file.  
 2)set up classpath by adding all the dependencies given in the dependency folder.  
-3)set up the mysql server using the sql file and DatabaseConnection.java file.  
-4)run the main.java file.  
+3)set up the mysql server using the draw.sql file (in dependencies) and DatabaseConnection.java file.    
+4)run the main.java file.    
   
 ![image](https://github.com/AshayNaik97/drawing-app/assets/126677976/5d8578de-a884-4865-ba62-d5b07293b0e4)
 
